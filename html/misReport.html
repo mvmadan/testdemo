@@ -1,0 +1,257 @@
+<style>
+  .form-control {
+    background-color: #fff;
+    border: 1px solid #e4e7ea;
+    font-size: 10.5px;
+
+    box-shadow: none;
+    color: #565656;
+
+    max-width: 100%;
+
+    transition: all 300ms linear 0s;
+  }
+
+  select.form-control:not([size]):not([multiple]) {
+    height: 27px;
+    border-radius: 10px 10px 10px 10px;
+    padding: 0px 1px;
+  }
+</style>
+<div id="loadTT" ng-style = "user_is_not_IC"></div>
+<div id="page-wrapper">
+
+  <div class="row bg-title">
+    <h4 class="page-title" style="margin-top: 0px; margin-left: 33px;display:inline-block">MIS Admin</h4>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12" style="float:right;padding-right:2%">
+      <ol class="breadcrumb">
+        <li><a href="#!/misReport">Reports</a></li>
+        <li class="active">MIS Admin</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="white-box" style="height:100%; width:100%">
+    <div class="col-sm-12" style="border: solid 2px #e5e8e8; ">
+
+
+      <div class="col-md-12" style="padding-top:5px;padding-bottom:5px">
+        <div class="col-sm-11">
+          <label for="lineId">Search</label>
+          <ui-select multiple class="ui-select-search" ng-model="stringList.selectedEmployee" style="width:100%;" title="Add/modify Clients" theme="selectize" search-enabled="enabled" autofocus="true" ng-required="true" on-select="onSelected($item)">
+            <ui-select-match placeholder="Add Employees">{{$item.name}}</ui-select-match>
+            <ui-select-choices repeat=" stringList in employeeList track by $index  ">{{stringList.name}}</ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="col-sm-1">
+          <button type="button " class="btn btn-primary " style="margin-top:27px; margin-bottom:10px; border-radius:6px;background-color: #55b160;border-color: #3d6331;" ng-click="onSearch();">Search
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+    <!--Terminate Border container -->
+
+
+    <div class="col-sm-12" style="padding-top:10px;padding-left: 0px;padding-right: 0px;" ng-if="showTable">
+      <table id="misReportTable" class="table color-bordered-table info-bordered-table table-responsive">
+
+
+        <thead>
+          <tr>
+            <th style="width:10%">Employee Name</th>
+            <th style="width:10%">Business</th>
+            <th style="width:10%">Unit</th>
+            <th style="width:10%">Group</th>
+            <th style="width:10%">Team</th>
+            <th style="width:10%">Client</th>
+            <th style="width:10%">Level</th>
+            <th style="width:10%">Count Of Errors</th>
+            <th style="width:10%">Daily Hours</th>
+            <th colspan="2" style="width:10%">Employee Status</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          <tr ng-repeat=" empList in employeeData ">
+
+            <td style="text-align:left">{{ empList.employee_name }}
+            </td>
+
+            <td style="text-align:center">
+              <select class="form-control" ng-model="empList.selectedBusiness" ng-options="list.business_id as list.business_name for list in businessList" ng-disabled="businessAccess" style="width:89px" ng-style = "empList.busStyle">{{list.business_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td style="text-align:left">
+              <select class="form-control" ng-model="empList.selectedUnit" ng-options=" list.unit_id as list.unit_name for list in unitList" ng-disabled="unitAccess" style="width:89px" ng-style = "empList.unitStyle">{{list.unit_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td style="text-align:center">
+              <select id="groupId" class="form-control" ng-model="empList.selectedGroup" ng-options="list.group_id as list.group_name for list in groupList" ng-disabled="groupAccess" style="width:89px" ng-style = "empList.grpStyle" >{{list.group_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td style="text-align:center">
+              <select class="form-control" ng-model="empList.selectedTeam" ng-options="list.team_id as list.team_name for list in teamList" ng-disabled="teamAccess" style="width:89px" ng-style = "empList.teamStyle">{{list.team_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td style="text-align:center">
+              <select class="form-control" ng-model="empList.selectedClient" ng-options="list.client_id as list.client_name for list in clientList" style="width:89px" ng-style = "empList.clientStyle">{{list.client_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td style="text-align:center">
+              <select class="form-control" ng-model="empList.selectedLevel" ng-options="list.level_id as list.level_name for list in levelList" style="width:89px" required = "true" ng-style = "empList.lvlStyle">{{list.level_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td>
+              <input type="text" style="width:44px;text-align: center" ng-model = "empList.selectedCount_of_errors" />
+            </td>
+
+            <td>
+              <input type="text" style="width:44px;text-align:center" ng-model ="empList.selectedDaily_hours"   />
+            </td>
+
+            <td style="text-align:center">
+              <select class="form-control" ng-model="empList.selectedStatus" ng-options="list.status_id as list.status_name for list in statusList" style="width:89px" ng-style = "empList.statStyle">{{list.status_name}}
+                <option value="">Please Select</option>
+              </select>
+            </td>
+
+            <td>
+              <span tooltips tooltip-template="{{empList.more_info}}" tooltip-side="left" tooltip-size="large">
+                <!-- <span data-icon="G" class="linea-icon linea-basic" style="padding-top:6px !important"></span> -->
+                <i class="fa fa-info-circle" aria-hidden="true" style="padding: 7px 0px 0px 0px; margin-left: -19px;"></i>
+              </span>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class=" col-sm-12">
+        <div style="margin-left:43%">
+          <button type="button " class="btn btn-primary " style="margin-top:-1px; margin-bottom:10px; border-radius:6px;background-color: #55b160;border-color: #3d6331; width:88px" ng-click="onSubmit();">Submit
+           </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!--Terminate wrapper page wrapper container-->
+</div>
+<!--Terminate wrapper class container-->
+<script type="text/javascript">
+  $(document).ready(function() {
+    "use strict";
+    var e = $("body");
+    $(function() {
+        $(".preloader").fadeOut(), $("#side-menu").metisMenu()
+      }), $(".right-side-toggle").on("click", function() {
+        $(".right-sidebar").slideDown(50).toggleClass("shw-rside"), $(".fxhdr").on("click", function() {
+          e.toggleClass("fix-header")
+        }), $(".fxsdr").on("click", function() {
+          e.toggleClass("fix-sidebar")
+        });
+        var i = $(".fxhdr");
+        e.hasClass("fix-header") ? i.attr("checked", !0) : i.attr("checked", !1), e.hasClass("fix-sidebar") ? i.attr("checked", !0) : i.attr("checked", !1)
+      }), $(function() {
+        var i = function() {
+            var i = 60,
+              s = window.innerWidth > 0 ? window.innerWidth : this.screen.width,
+              l = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
+            768 > s ? ($("div.navbar-collapse").addClass("collapse"), i = 100) : $("div.navbar-collapse").removeClass("collapse"), 1170 > s ? (e.addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(
+              ".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $(".logo span").hide()) : (e.removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(
+              ".logo span").show()), l -= i, 1 > l && (l = 1), l > i && $("#page-wrapper").css("min-height", l + "px")
+          },
+          s = window.location,
+          l = $("ul.nav a").filter(function() {
+            return this.href === s || 0 === s.href.indexOf(this.href)
+          }).addClass("active").parent().parent().addClass("in").parent();
+        l.is("li") && l.addClass("active"), $(window).ready(i), $(window).on("resize", i)
+      })
+      /*, $(".open-close").on("click", function() {
+              $("body").hasClass("content-wrapper") ? ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"), $("body").removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(".logo span").show()) : ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $("body").addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(".logo span").hide())
+            })*/
+      ,
+      function(e, i, s) {
+        var l = '[data-perform="panel-collapse"]',
+          o = '[data-perform="panel-dismiss"]';
+        e(l).each(function() {
+          var i = {
+              toggle: !1
+            },
+            s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper"),
+            o = e(this).children("i");
+          l.length || (l = s.children(".panel-heading").nextAll().wrapAll("<div/>").parent().addClass("panel-wrapper"), i = {}), l.collapse(i).on("hide.bs.collapse", function() {
+            o.removeClass("ti-minus").addClass("ti-plus")
+          }).on("show.bs.collapse", function() {
+            o.removeClass("ti-plus").addClass("ti-minus")
+          })
+        }), e(s).on("click", l, function(i) {
+          i.preventDefault();
+          var s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper");
+          l.collapse("toggle")
+        }), e(s).on("click", o, function(i) {
+          function l() {
+            var i = s.parent();
+            s.remove(), i.filter(function() {
+              return e(this).is('[class*="col-"]') && 0 === e(this).children("*").length
+            }).remove()
+          }
+          i.preventDefault();
+          var s = e(this).closest(".panel");
+          l()
+        })
+      }(jQuery, window, document), $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+      }), $(function() {
+        $('[data-toggle="popover"]').popover()
+      }), $(".list-task li label").on("click", function() {
+        $(this).toggleClass("task-done")
+      }), $(".settings_box a").on("click", function() {
+        $("ul.theme_color").toggleClass("theme_block")
+      }), $(".collapseble").on("click", function() {
+        $(".collapseblebox").fadeToggle(350)
+      }), $(".slimscrollright").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".slimscrollsidebar").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".chat-list").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), e.trigger("resize"), $(".visited li a").on("click", function(e) {
+        $(".visited li").removeClass("active");
+        var i = $(this).parent();
+        i.hasClass("active") || i.addClass("active"), e.preventDefault()
+      }), $("#to-recover").on("click", function() {
+        $("#loginform").slideUp(), $("#recoverform").fadeIn()
+      }), $(".navbar-toggle").on("click", function() {
+        $(".navbar-toggle i").toggleClass("ti-menu").addClass("ti-close")
+      })
+  });
+</script>

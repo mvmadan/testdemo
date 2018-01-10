@@ -1,0 +1,1627 @@
+<style>
+
+  .glyphicon-search {
+    margin-left: -30px;
+    font-size: 12.5px;
+  }
+
+  .text-info {
+    color: black !important;
+    font-weight: bold !important;
+  }
+
+  .btn-info.active, .btn-info:active, .open>.dropdown-toggle.btn-info {
+    color: black;
+    font-weight: bold !important;
+    background-color: #31b0d5;
+    border-color: #269abc;
+  }
+
+  #search {
+    border-radius: 20px;
+  }
+
+  .nav-pills li {
+    border: solid 1px;
+    padding: 0 5px 0 5px;
+  }
+
+  .nav-pills .active {
+    background-color: #dbdeec;
+  }
+
+  .circle-icon {
+    height: 30px;
+    width: 50px;
+    border-radius: 50px;
+    border: solid 1px;
+    padding: 10px 15px;
+    font-weight: 800;
+    color: white;
+    background: red;
+  }
+
+  .clear-fix {
+    height: 25px;
+  }
+
+  .radius-text {
+    border-radius: 25px;
+  }
+
+  .border {
+    border-bottom: solid 1px #d2caca;
+    padding: 5px;
+    margin-left: -5px;
+    width: 100%;
+  }
+
+  .icon-cell {
+    padding: 4px;
+    border-radius: 14px;
+    color: white;
+    font-size: 12.5px;
+  }
+
+  .glyphicon-random {
+    background-color: #00ffc4;
+  }
+
+  .glyphicon-trash {
+    background-color: red;
+  }
+
+  .glyphicon-play {
+    color: rgba(8, 111, 98, 0.76);
+    font-size: 12.5px;
+  }
+
+  .glyphicon-calendar {
+    color: #00abff;
+    font-size: 12.5px;
+    float: right;
+  }
+
+  .pause-all {
+    /*background-color: #00adff;
+    color: white;
+    padding: 2px 10px;
+    float: right;
+    font-size: 12.5px;
+    border-radius: 10px;*/
+    cursor: pointer;
+  }
+
+  .green1 .activity-tab {
+    padding: 5px 10px;
+    border: solid 1px #6f802e;
+    border-radius: 5px;
+    color: #6f802e;
+  }
+
+  .red .activity-tab {
+    padding: 5px 10px;
+    border: solid 1px #7b2e2e;
+    border-radius: 5px;
+    color: #7b2e2e;
+    background: #ffc0cc;
+  }
+
+  .activities-ul {
+    display: inline;
+    float: left;
+  }
+
+  .proj-name {
+    cursor: pointer;
+  }
+
+  .glyphicon-random {
+
+    color: grey;
+    background-color: white;
+  }
+
+  .glyphicon-random: hover {
+
+    color: green;
+    background-color: white;
+  }
+
+  .add-task {
+    background: white;
+    color: #09a1ec;
+    border: solid 2px #09a1ec;
+    border-radius: 5px;
+  }
+
+  .add-task:hover {
+    background: #09a1ec;
+    color: white;
+    border: solid 2px #09a1ec;
+    border-radius: 5px;
+  }
+
+  .proj-table {
+    margin-left: -10px;
+  }
+
+  .glyphicon-pause {
+    color: #00adff;
+    font-size: 12.5px;
+  }
+
+  .selected {
+    border: solid 1px black!important;
+    background-color: #2d3482 !important;
+  }
+
+  .highlight {
+    background-color: #FFFAEA;
+    /*box-shadow: -5px 0px 1px #0089ff*/
+  }
+
+  .billedActivities_btn_class {
+    width: 47% !important;
+    height: 1% !important;
+  }
+
+  .npbilledActivities_btn_class {
+    width: 42% !important;
+    height: 47% !important;
+  }
+
+  .animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated.infinite{-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}.animated.hinge{-webkit-animation-duration:2s;animation-duration:2s
+  }@-webkit-keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}50%{opacity:1}}@keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}50%{opacity:1}}.zoomIn{-webkit-animation-name:zoomIn;animation-name:zoomIn}
+  @-webkit-keyframes zoomOut{0%{opacity:1}50%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}100%{opacity:0}}@keyframes zoomOut{0%{opacity:1}50%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}100%{opacity:0}}.zoomOut{-webkit-animation-name:zoomOut;animation-name:zoomOut}
+
+  #accordion .panel-title i.glyphicon{
+      -moz-transition: -moz-transform 0.5s ease-in-out;
+      -o-transition: -o-transform 0.5s ease-in-out;
+      -webkit-transition: -webkit-transform 0.5s ease-in-out;
+      transition: transform 0.5s ease-in-out;
+  }
+
+  .rotate-icon{
+      -webkit-transform: rotate(-225deg);
+      -moz-transform: rotate(-225deg);
+      transform: rotate(-225deg);
+  }
+
+  .panel{
+      border: 0px;
+      border-bottom: 1px solid #30bb64;
+  }
+  .panel-group .panel+.panel{
+      margin-top: 0px;
+  }
+  .panel-group .panel{
+      border-radius: 0px;
+  }
+  .panel-heading{
+      border-radius: 0px;
+      color: white;
+      padding: 25px 15px;
+  }
+  .panel-custom>.panel-heading{
+      background-color: #dbdeec;
+  }
+  .panel-group .panel:last-child{
+      border-bottom: 5px solid #2ba659;
+  }
+
+  panel-collapse .collapse.in{
+      border-bottom:0;
+  }
+
+  @keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+  @keyframes animatedRight {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .animatedRight{
+    /* This section calls the slideInFromLeft animation we defined above */
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+  }
+
+  input[type="text"]{ height: 25px;border-radius: 10px 10px 10px 10px; }
+
+  .toolTipLocal{
+    padding-top: 3%;
+    padding-right: 5%;
+    float: right;
+  }
+
+  .addCommentClass{
+    border : 2px solid #7fabec;
+    padding : 5px ;
+    background : rgb(253, 255, 252) ;
+    border-radius : 9px ;
+    height : 120px ;
+    width: 10% ;
+    position : absolute ;
+    z-index : 1;
+    /*overflow : overlay; */
+  }
+
+  input[type='radio'] {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 15px;
+        border-radius: 50%;
+        outline: none;
+        border:2px solid gray;
+    }
+
+    input[type='radio']:before {
+        content: '';
+        display: block;
+        width: 60%;
+        height: 60%;
+        margin: 20% auto;
+        border-radius: 50%;
+    }
+
+ input[type="radio"]:checked:before {
+        background: green;
+
+    }
+
+    input[type="radio"]:checked {
+      border-color:green;
+    }
+
+    .radioSelected {
+        margin-right: 80px;
+        margin-left: 20px;
+        margin-bottom: 0px;
+        font-weight: normal;
+    }
+
+    .radioNotSelected {
+        margin-right: 80px;
+        margin-left: 20px;
+        margin-bottom: 0px;
+        font-weight: normal;
+        border-color: red !important;
+    }
+
+    .checkbox label {
+        margin-bottom: 20px !important;
+    }
+
+    .roles {
+        margin-bottom: 40px;
+    }
+</style>
+
+
+<!--<div id="page-wrapper">-->
+<div class="container-fluid">
+  <!-- <div> -->
+  <div class="row bg-title">
+    <!--<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Time Tracker</h4> </div>
+      <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+          <li><a href="#">Execution</a></li>
+          <li><a href="#">Time Manager</a></li>
+          <li class="active">Time Tracker</li>
+        </ol>
+      </div>-->
+    <!-- /.col-lg-12 -->
+    <!-- <div class="row">
+      <div class="col-lg-12 col-sm-8 col-md-12 col-xs-12">
+        <div class="white-box">
+          <nav>
+            <ul class="nav customtab nav-tabs">
+              <li class="{{tt}}">
+                <a href ng-click="setTab(1)"><span>My Tasks</span></a>
+              </li>
+              <li class="{{ba}}">
+                <a href ng-click="setTab(2)"><span>Billed Tasks</span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div> -->
+    <ul class="nav customtab nav-tabs" role="tablist">
+      <li role="presentation" class="nav-item">
+        <a href ng-click="setTab(1)" aria-controls="employeeReport" role="tab" data-toggle="tab" aria-expanded="true">
+          <span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs">My Tasks</span>
+        </a>
+      </li>
+      <li role="presentation" class="nav-item">
+        <a href ng-click="setTab(2)" aria-controls="projectReport" role="tab" data-toggle="tab" aria-expanded="true">
+          <span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Billed Tasks</span>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content tab-content-first hide">
+      <div class="col-md-7 left-hand-side" style=" padding-left: 20px;padding-right: 0px;padding-bottom: 200px;">
+        <!-- <form ng-submit="todoAdd()" class="form-group">
+          <div class="clear-fix"></div>-->
+          <table class="table color-bordered-table info-bordered-table table-responsive">
+            <thead>
+              <tr>
+                <th style="width: 36%;"><label style="color:red">*</label>Project Number/Name</th>
+                <th>Task Date</th>
+                <th>Est Hours</th>
+                <th>Rec</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input name="states" style="height: 25px;border-radius: 10px 10px 10px 10px;{{projectnameNumberAlert}}" autocomplete="off" id="states" type="text" placeholder="Please Select" ng-model="todoInput" uib-typeahead="state as state.proj_name for state in projectList_array | filter:$viewValue | limitTo:8" class="form-control">
+                </td>
+                <td>
+                  <input type="text" class="form-control" show-button-bar="false"  uib-datepicker-popup="dd-MMM-yyyy" ng-model="task_date" datepicker-options="{'minDate': minimum_date,'maxDate': maximum_date}" ng-click="opened = !!! opened" is-open="opened" readonly="true" class="form-control date-input" style="width: 109px;height: 25px;border-radius: 10px 10px 10px 10px;"/>
+                </td>
+                <td>
+                  <input type="text" integers-only maxlength="2" placeholder="HH" ng-model="est_hrs" class="form-control   pull-left" style="width:42px;height: 25px;border-radius: 10px 10px 10px 10px;{{estHrsAlertToDo}}">
+                  <b class="pull-left" style="font-weight:600; margin:5px"> : </b>
+                  <input type="text" integers-only maxlength="2" placeholder="MM" ng-model="est_mins" class="form-control   pull-left" style="width:42px;height: 25px;border-radius: 10px 10px 10px 10px;{{estMinsAlertToDo}}">
+                </td>
+                <td>
+                  <input type="checkbox" ng-model="recurring">
+                </td>
+                <td>
+                  <!-- <button ng-click="todoAdd();" class="btn btn-sm  add-task">Add Task</button> -->
+                  <button type="button" class="btn btn-success" ng-click="todoAdd()" style="padding: 1px 12px;vertical-align: top;height: 25px;border-radius: 10px 10px 10px 10px;">Add Task</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="row">
+            <div class="form-group col-md-4">
+              <p> Project Number</p>
+              <input name="states" autocomplete="off" id="states" type="text" placeholder="Please Select" ng-model="todoInput" uib-typeahead="state as state.proj_name for state in states | filter:$viewValue | limitTo:8" class="form-control ">
+            </div>
+            <div class="form-group col-md-2">
+              <p> Task Date </p>
+              <input type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" ng-model="task_date" ng-click="opened = !!! opened" is-open="opened" readonly="true" class="form-control date-input" style="border:none"/>
+            </div>
+            <div class="form-group col-md-2">
+              <p> Est Hours</p>
+              <input type="text" ng-model="est_hrs" class="form-control   pull-left" style="width:30px">
+              <b class="pull-left" style="font-weight:600; margin:5px"> : </b>
+              <input type="text" ng-model="est_mins" class="form-control   pull-left" style="width:30px">
+            </div>
+            <div class="form-group col-md-1">
+              <p>Rec</p>
+              <input type="checkbox" ng-model="recurring">
+            </div>
+            <div class="form-group col-md-1">
+              <p></p>
+              <button type="submit" class="btn btn-sm  add-task">Add Task </button>
+            </div>
+           </div> -->
+        <!--</form> -->
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+            <div class="panel panel-custom" style="border-bottom: none;margin-bottom: 2px;{{showTodoList}}">
+                <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 5px;border-radius: 10px 10px 10px 10px;height: 25px;text-transform: none;">
+                    <h4 class="panel-title" style="margin-top: 0px;">
+                        <a data-toggle="collapse" id="collapseOneId" style="content: '';" data-parent="#accordion" href="" ui-sref="timeTracker({'#': 'collapseOne'})" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Unbilled Task ({{todoList.length}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--(<span ng-bind="{{unbilled_length}}"></span>)-->
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="collapseOneZoomId" class="panel-body animated zoomOut">
+                      <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-1">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Project Number/Name</th>
+                            <th>Task Date</th>
+                            <!-- <th>Est Hours</th> -->
+                            <th>HH:MM:SS</th>
+                            <!-- <th>ASP</th> -->
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody ng-repeat="x in todoList track by $index">
+                          <tr ng-controller="stopWatchDemoCtrl" background-color= "#FFFAEA" index="{{$index}}" style="{{x.trDisplay}}" >
+                            <td style="outline:none;">
+                              <div ng-repeat="options in stopwatches">
+                                <div bb-stopwatch options="options">
+                                  <div class="btn-grp">
+                                    <span data-toggle="tooltip" title="Reset" class="glyphicon glyphicon-pause-task glyphicon-stop" time="{{x.time_tracker_task_id}}" ng-click="resetTimer(x,userId,x.flag)"></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td style="text-align: left;outline:none;" ng-click="hoverDeliver($index,x,'0')">
+                              <span ng-bind="x.todoText" class="text-center proj-name" style="display: block;width: 250px;word-wrap: break-word;text-align: left;"></span>
+                            </td>
+                            <td style="outline:none;" class="stopSelection">
+                              <input ng-disabled="x.disable" type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" ng-model="x.p_date"  datepicker-options="{'minDate': task_date}" ng-click="opened11 = !!! opened11" is-open="opened11" readonly="true" class="form-control date-input" style="width: 109px;border:none;" ng-change="changeTaskDate(x,'0',{{$index}},otherData[0],currData)"/>
+                            </td>
+                            <!-- <td>
+                              <span ng-bind="x.estimated_hours"></span> :<span ng-bind="x.estimated_mins"></span>
+                            </td> -->
+                            <td style="outline:none;" ng-attr-id={{x.executed_hrs}} ng-click="hoverDeliver($index,x,'0')">
+                              <div ng-repeat="options in stopwatches">
+                                <div bb-stopwatch options="options" id="">
+                                  <div class="stopWatch numbers text-center indexCurrTime0{{$parent.$parent.$index}}">
+                                    {{options.elapsedTime | stopwatchTime}}
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <!-- <td>
+                              <input type="text" ng-model="unbilled_ats_hrs" placeholder="HH" style="width: 42px;" ng-bind="{{x.executed_hours}}" value={{x.executed_hours}} class="form-control pull-left">
+                              <b class="pull-left" style="font-weight:600; margin:5px"> : </b>
+                              <input type="text" ng-model="unbilled_ats_mins" placeholder="MM" style="width: 42px;" ng-bind="{{x.executed_mins}}" value={{x.executed_mins}} class="form-control pull-left">
+                            </td> -->
+                            <td style="outline:none;" ng-click="hoverDeliver($index,x,'0')">
+                              <!-- <span class="glyphicon glyphicon-random icon-cell" ng-click="quickBill($index,0,unbilled_ats_hrs,unbilled_ats_mins,x)"></span> -->
+                              <!-- {{$index}}{{'::'}}{{x.time_tracker_task_id}}{{'::'}}{{x.executed_hrs}} -->
+                              <span class="glyphicon glyphicon-trash icon-cell text-center" ng-click="removeTable($index,x.time_tracker_task_id,x.executed_hrs,x)"></span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-custom" style="border-bottom: none;margin-bottom: 2px;{{showTodayList}}">
+                <div class="panel-heading" role="tab" id="headingTwo" style="padding: 2px 5px;border-radius: 10px 10px 10px 10px;height: 25px;text-transform: none;">
+                    <h4 class="panel-title" style="margin-top: 0px;">
+                        <a class="collapsed" data-toggle="collapse" id="collapseTwoId" style="content: '';" data-parent="#accordion" href="" ui-sref="timeTracker({'#': 'collapseTwo'})" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Today's Task ({{todayprojectList.length}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--(<span ng-bind="today_length"></span>)-->
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div id="collapseTwoZoomId" class="panel-body animated zoomOut">
+                      <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-2">
+                        <thead>
+                          <tr>
+                            <th style="width: 8%;">
+                              <!-- <button class="pause-all" title="Pause All">Pause All</button> -->
+                              <i class="fa fa-pause-circle-o pause-all" title="Pause All"></i>
+                            </th>
+                            <th>Project Number/Name</th>
+                            <th>Task Date</th>
+                            <th>Timer</th>
+                            <!-- <th>HH:MM:SS</th> -->
+                            <!-- <th>ATS</th> -->
+                            <th>Actions
+                              <!-- <span class="pause-all"><span class="glyphicon glyphicon-pause" title="Pause All" style="color: black;float: right;padding-right: 6px;padding-top: 3px;"></span></span> -->
+                              <!-- <button class="pause-all">Pause All</button> -->
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody ng-repeat="x in todayprojectList track by $index">
+
+                          <tr ng-controller="stopWatchDemoCtrl" class="todayIndex{{$index}}" index="$index" style="{{x.trDisplay}}" >
+                            <td style="outline:none;" ng-click="hoverDeliver($index,x,'1')">
+                              <!-- <span> <input type="checkbox" ng-checked="{{ x.Recurring_Task == 'Y' ? 'true' : 'false' }}"> </span> -->
+                              <div ng-repeat="options in stopwatches">
+                                <div bb-stopwatch options="options">
+                                  <div class="btn-grp">
+                                    <span data-toggle="tooltip" title="Start" class="glyphicon glyphicon-play {{ x.flag === 'A' || x.flag === 'P' ? 'ok' : 'hide' }} {{x.time_tracker_task_id}}-play todayIndexStart{{$parent.$parent.$index}}" ng-click="startTimer($event,x,userId)"></span>
+                                    <span data-toggle="tooltip" title="Pause" class="glyphicon glyphicon-pause-task glyphicon-pause {{ x.flag === 'S' ? 'ok' : 'hide' }} {{x.time_tracker_task_id}}-pause todayIndexPause{{$parent.$parent.$index}}" time="{{x.time_tracker_task_id}}" ng-click="stopTimer($event,x,userId)"></span>
+                                    <span data-toggle="tooltip" title="Reset" class="glyphicon glyphicon-pause-task glyphicon-stop" time="{{x.time_tracker_task_id}}" ng-click="resetTimer($event,x,userId,x.flag)"></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td style="text-align:left;outline:none;" ng-click="hoverDeliver($index,x,'1')">
+                              <span ng-bind="x.todoText" ng-click="hoverDeliver($index,x)" class="proj-name" style="outline:none;display: block;width: 250px;word-wrap: break-word;text-align: left;"> </span>
+                            </td>
+
+                            <td style="outline:none;"  >
+                              <input ng-disabled="x.disable" type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" ng-model="x.p_date" datepicker-options="{'minDate': task_date}" ng-click="opened21 = !!! opened21" is-open="opened21" readonly="true" class="form-control date-input" style="width:109px;border:none;" ng-change="changeTaskDate(x,'1',{{$index}},otherData[0],currData)" />
+                            </td>
+                            <!-- <td class="text-center">
+                              <span> {{x.executed_hours}} </span> : <span> {{x.executed_mins}}  </span>
+                            </td> -->
+                            <td style="outline:none;" ng-attr-id={{x.executed_hrs}} ng-click="hoverDeliver($index,x,'1')">
+                              <div ng-repeat="options in stopwatches">
+                                <div bb-stopwatch options="options" id="{{x.executed_hrs}}">
+                                  <div class="stopWatch numbers text-center indexCurrTime1{{$parent.$parent.$index}}" style="font-weight: bold;color: black;">
+                                    {{options.elapsedTime | stopwatchTime}}
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <!-- <td class="text-center">
+                              <input type="text"  ng-model="ats_hrs" placeholder="HH" style="width:42px" ng-bind="{{x.executed_hours}}" value={{x.executed_hours}} class="form-control pull-left">
+                              <b class="pull-left" style="font-weight:600; margin:5px"> : </b>
+                              <input type="text" ng-model="ats_mins" placeholder="MM" style="width:42px" ng-bind="{{x.executed_mins}}" value={{x.executed_mins}} class="form-control pull-left">
+                            </td> -->
+                            <td style="outline:none;" ng-click="hoverDeliver($index,x,'1')">
+                              <!-- <span class="glyphicon glyphicon-random icon-cell" ng-click="quickBill($index,1,ats_hrs,ats_mins,x)"></span> -->
+                              <span class="glyphicon glyphicon-trash icon-cell text-center" ng-click="removeTodayTable($index,x.time_tracker_task_id,x)"></span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-custom" style="border-bottom: none;margin-bottom: 2px;{{showFutureList}}">
+                <div class="panel-heading" role="tab" id="headingThree" style="padding: 2px 5px;border-radius: 10px 10px 10px 10px;height: 25px;text-transform: none;">
+                    <h4 class="panel-title" style="margin-top: 0px;">
+                      <a class="collapsed" data-toggle="collapse" id="collapseThreeId" style="content: '';" data-parent="#accordion" href="" ui-sref="timeTracker({'#': 'collapseThree'})" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="glyphicon glyphicon-plus"></i>
+                          Future Task ({{futureProjectone.length}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--(<span ng-bind="future_length"></span>)-->
+                      </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div id="collapseThreeZoomId" class="panel-body animated zoomOut">
+                      <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-3">
+                        <thead>
+                          <tr>
+                            <th>Project Number/Name</th>
+                            <th>Task Date</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody ng-repeat="x in futureProjectone track by $index">
+                          <tr ng-controller="stopWatchDemoCtrl" index="{{$index}}" style="{{x.trDisplay}}" >
+                            <td style="outline:none;" ng-click="hoverDeliver($index,x,'2')">
+                              <span ng-bind="x.todoText" ng-click="hoverDeliver($index,x,'2')" class="pull-left proj-name" style="outline:none;display: block;width: 250px;word-wrap: break-word;text-align: left;"> </span>
+                            </td>
+                            <td style="outline:none;">
+                              <input ng-disabled="x.disable" type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" datepicker-options="{'minDate': task_date}" ng-bind="x.p_date" ng-model="x.p_date" value={{x.p_date}} ng-click="opened31 = !!! opened31" is-open="opened31" readonly="true" class="form-control date-input" style="border:none" ng-change="changeTaskDate(x,'2',{{$index}},otherData[0],currData)"/>
+                            </td>
+                            <td style="outline:none;" ng-click="hoverDeliver($index,x,'2')">
+                              <span class="glyphicon glyphicon-trash icon-cell text-center" ng-click="removeFutureTable($index,x.time_tracker_task_id,x)"></span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="border {{unbilled ? 'video.large' : 'hide'}}">
+          <strong> <span class="glyphicon glyphicon-triangle-bottom" data-toggle="collapse" data-target="#demo-unbilled"></span> Unbilled Task (<span ng-bind="unbilled_length"></span>)</strong>
+        </div>
+        <div id="demo-unbilled" class="collapse">
+          <div class="clear-fix"></div>
+          <table class="table proj-table unbilled-tbl-1">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Task Date</th>
+                <th>Est Hours</th>
+                <th>HH:MM:SS</th>
+                <th>ASP</th>
+                <th>Settings</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="x in todoList">
+              <tr ng-controller="stopWatchDemoCtrl" index="{{$index}}" ng-click="hoverDeliver(x)">
+                <td>
+                  <center><span ng-bind="x.todoText" class="text-center proj-name"></span></center>
+                </td>
+                <td class="input-group" style="position: static;width: 72%;float: left;">
+                  <input type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" ng-bind="x.p_date" ng-model="x.p_date" value={{x.p_date}} ng-click="opened = !!! opened" is-open="opened" readonly="true" class="form-control date-input" style="border:none" ng-change="changeTaskDate(x)"/>
+                </td>
+                <td> <span ng-bind="x.estimated_hours"></span> :<span ng-bind="x.estimated_mins"></span> </td>
+                <td ng-attr-id={{x.executed_hrs}}>
+                  <div ng-repeat="options in stopwatches">
+                    <div bb-stopwatch options="options" id="">
+                      <div class="stopWatch numbers text-center">
+                        {{options.elapsedTime | stopwatchTime}}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span>
+
+                   <input type="text" ng-model="unbilled_ats_hrs" style="height: 30px;width: 40px;display:inline;font-size: 12px;" ng-bind="{{x.executed_hours}}" value={{x.executed_hours}} class="form-control">
+
+                   <input type="text" ng-model="unbilled_ats_mins" style="height: 30px;width: 40px;display:inline;font-size: 12px;" ng-bind="{{x.executed_mins}}" value={{x.executed_mins}} class="form-control">
+
+                 </span>
+                </td>
+                <td>
+                  <span class="glyphicon glyphicon-random icon-cell" ng-click="quickBill($index,0,unbilled_ats_hrs,unbilled_ats_mins,x)"></span>
+                  <span class=" glyphicon glyphicon-trash icon-cell text-center" ng-click="remove($index,x.time_tracker_task_id)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row" id="unbilled">
+        </div>
+        <div class="clear-fix"></div>
+
+        <div class="border {{today ? 'video.large' : 'hide'}}">
+          <strong> <span class="glyphicon glyphicon-triangle-bottom" data-toggle="collapse" data-target="#demo-today"></span> Todays's Task (<span ng-bind="today_length"></span>)</strong>
+          <span class="pause-all"><span class="glyphicon glyphicon-pause" style="color:white"></span> Pause all </span>
+        </div>
+        <div class="clear-fix"></div>
+        <div id="demo-today" class="collapse">
+          <table class="table  unbilled-tbl-2">
+            <thead>
+              <tr>
+                <th>controls</th>
+                <th>Project Name</th>
+                <th>Task Date</th>
+                <th>Est Hours</th>
+                <th>HH:MM:SS</th>
+                <th>ATS</th>
+                <th>Settings</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="x in todayprojectList">
+              <tr ng-controller="stopWatchDemoCtrl" index="{{$index}}" ng-click="hoverDeliver(x)">
+                <td>
+                  <span> <input type="checkbox" ng-checked="{{ x.Recurring_Task == 'Y' ? 'true' : 'false' }}"> </span>
+                  <div ng-repeat="options in stopwatches">
+                    <div bb-stopwatch options="options">
+                      <div class="btn-grp">
+                        <span data-toggle="tooltip" title="Start" class="glyphicon glyphicon-play {{ x.flag == 'A' || x.flag == 'P' ? 'ok' : 'hide' }} {{x.time_tracker_task_id}}-play" ng-click="startTimer(x,userId)"></span>
+                        <span data-toggle="tooltip" title="Pause" class="glyphicon glyphicon-pause-task glyphicon-pause {{ x.flag == 'S' ? 'ok' : 'hide' }} {{x.time_tracker_task_id}}-pause" time="{{x.time_tracker_task_id}}" ng-click="stopTimer(x,userId)"></span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td><span ng-bind="x.todoText" ng-click="hoverDeliver(x)" class="text-center proj-name"> </span> </td>
+                <td class="input-group" style="position: static;width: 72%;float: left;">
+                  <input type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" ng-bind="x.p_date" ng-model="x.p_date" value={{x.p_date}} ng-click="opened = !!! opened" is-open="opened" readonly="true" class="form-control date-input" style="border:none" ng-change="changeTaskDate(x)"/>
+                </td>
+                <td class="text-center">
+                  <span> {{x.executed_hours}} </span> : <span> {{x.executed_mins}}  </span>
+                </td>
+
+                <td ng-attr-id={{x.executed_hrs}}>
+                  <div ng-repeat="options in stopwatches">
+                    <div bb-stopwatch options="options" id="">
+                      <div class="stopWatch numbers text-center">
+                        {{options.elapsedTime | stopwatchTime}}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center"><span>
+
+               <input type="text"  ng-model="ats_hrs" style="width:30px" ng-bind="{{x.executed_hours}}" value={{x.executed_hours}} class="form-control">
+              </span> : <span>
+                 <input type="text" ng-model="ats_mins" style="width:30px;float:left" ng-bind="{{x.executed_mins}}" value={{x.executed_mins}} class="form-control">
+               </span> </td>
+                <td>
+                  <span class="glyphicon glyphicon-random icon-cell" ng-click="quickBill($index,1,ats_hrs,ats_mins,x)"></span>
+                  <span class="glyphicon glyphicon-trash icon-cell text-center" ng-click="removeToday($index,x.time_tracker_task_id)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="border {{future ? 'video.large' : 'hide'}}">
+          <strong>
+            <span class="glyphicon glyphicon-triangle-bottom" data-toggle="collapse" data-target="#demo"></span>
+            Future Task (<span ng-bind="future_length"></span>)
+          </strong>
+        </div>
+        <div class="clear-fix"></div>
+        <div id="demo" class="collapse">
+          <table class="table  unbilled-tbl-3">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Task Date</th>
+                <th>Settings</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="x in futureProjectone">
+              <tr ng-controller="stopWatchDemoCtrl" index="{{$index}}" ng-click="hoverDeliver(x)">
+                <td>
+                  <span ng-bind="x.todoText" ng-click="hoverDeliver(x)" class="text-center proj-name"> </span>
+                </td>
+                <td class="input-group" style="position: static;width: 72%;float: left;">
+                  <input type="text" class="form-control"  uib-datepicker-popup="dd-MMM-yyyy" ng-bind="x.p_date" ng-model="x.p_date" value={{x.p_date}} ng-click="opened = !!! opened" is-open="opened" readonly="true" class="form-control date-input" style="border:none" ng-change="changeTaskDate(x)"/>
+                </td>
+                <td>
+                  <span class="glyphicon glyphicon-trash icon-cell text-center" ng-click="removeFuture($index,x.time_tracker_task_id)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> -->
+      </div>
+      <div class="col-md-5 right-hand-side" style="border-left: 1px solid #E3E3E3;padding-bottom: 200px;">
+        <div ng-show="deliveryDetailsShow" class="animateDiv">
+          <div class="white-box" style="padding:0px;">
+            <table style="width:100%;">
+              <tr>
+                <td>
+                  <h3 class="box-title" style="text-transform: none;">{{right_project_name}}</h3>
+                </td>
+                <td style="float: right;margin-right: 16px;margin-top: 8px;">
+                  <i class="fa fa-info-circle" tooltip-class="toolTipLocal" tooltips tooltip-template="{{task_allocation_details}}" tooltip-side="left"></i>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div ng-if="right_project_id != 0">
+            <div class="row" style="margin-right: 0px;margin-left: 0px;">
+              <p style="margin-bottom: 10px;margin-top: 10px;font-weight: bold; float:left;">Delivery:</p>
+            </div>
+            <select class="form-control" ng-model="select.delivery_name" ng-options="x as x.name for x in names" style="height: 25px;border-radius: 10px;padding: 1px 10px;{{deliveryAlert}}">
+              <option ng-selected="-1" value=''>Please Select</option>
+              <!-- <option ng-repeat="x in names" ng-value="x">{{x.name}}</option>
+              option as option.employee_name_no for option in billedPeerList -->
+            </select>
+            <p style="margin-bottom: 10px;margin-top: 10px;font-weight: bold;{{taskAlert}}">Tasks:</p>{{activeIndex}}
+            <uib-tabset type="pills" active="selectedServiceTab">
+              <uib-tab heading="{{obj.service_name}}" class="serviceTab{{$index}}" index="$index" ng-repeat="obj in outerList track by obj.service_name">
+                <button type="button" class="btn {{innerObj.styleClassback}}" ng-click="saveActivity(innerObj.task_id,innerObj.task_name,obj.service_name, $parent.$index , $index)" ng-repeat="innerObj in obj.innerMenu track by innerObj.task_name"  style="outline:none;padding: 1px 7px;vertical-align: top;height: 25px;border-radius: 10px 10px 10px 10px;margin: 1px;{{innerObj.billable === 'Y' ? 'background:#f5efef':'background:#f3e0e2;'}};{{innerObj.styleClassback}}">{{innerObj.task_name}}</button>
+              </uib-tab>
+            </uib-tabset>
+            <!-- <uib-tabset active="activeIndex">
+              <uib-tab index="$index" ng-repeat="x in entities_scope track by $index" heading="{{x.service_name}}{{$index}}" ng-click="setServiceTab($index,x.service_id)">
+              </uib-tab>
+            </uib-tabset>
+            <div class="panel-body" style="margin-top:0px;padding: 0px;">
+              <div class="tab-content">
+                <div ng-repeat="y in active_activities_array track by $index">
+                  <div class="activities-group">
+                    <div class=" {{y.billable == 'Y' ? 'green1' : 'red'}}">
+                      <div class="activity-tab pull-left {{y.task_id}}-activity {{otherData[0].task_id ==y.task_id ? 'selected':'' }}" ng-click="saveActivity(y.task_id,y.task_name)">{{ y.task_name }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div ng-if="right_project_id == 0">
+            <div class="row" style="margin-right: 0px;margin-left: 0px;">
+              <p style="margin-bottom: 10px;margin-top: 10px;font-weight: bold;">Client:</p>
+              <!-- <i class="fa fa-info-circle" tooltip-class="toolTipLocal" tooltips tooltip-template="{{task_allocation_details}}" tooltip-side="bottom"></i> -->
+            </div>
+            <select class="form-control" ng-model="select.selectedClient" ng-options="x as x.name for x in names" style="height: 25px;border-radius: 10px;padding: 1px 10px;{{clientAlert}}">
+              <option ng-selected="-1" value=''>Please Select</option>
+            </select>
+            <p style="margin-bottom: 10px;margin-top: 10px;font-weight: bold;{{taskAlert}}">Tasks:</p>
+            <uib-tabset type="pills" active="selectedServiceTab">
+              <uib-tab heading="{{obj.service_name}}" index="$index" class="serviceTab{{$index}}" ng-repeat="obj in outerList track by obj.service_name">
+                <button type="button" class="btn" ng-click="saveActivity(innerObj.task_id,innerObj.task_name,obj.service_name, $parent.$index , $index)" ng-repeat="innerObj in obj.innerMenu track by innerObj.task_name"  style="outline:none;padding: 1px 7px;vertical-align: top;height: 25px;border-radius: 10px 10px 10px 10px;margin: 1px;{{innerObj.billable === 'Y' ? 'background: #f5efef' : 'background: #f3e0e2;'}}; {{innerObj.styleClassback}}">{{innerObj.task_name}}</button>
+              </uib-tab>
+            </uib-tabset>
+            <!-- <uib-tabset active="activeIndex">
+              <uib-tab index="$index" ng-repeat="x in entities_scope track by $index" heading="{{x.service_name}}" ng-click="setServiceTab($index,x.service_id)">
+              </uib-tab>
+            </uib-tabset>
+            <div class="panel-body" style="margin-top:0px;padding: 0px;">
+              <div class="tab-content">
+                <div ng-repeat="y in active_activities_array track by $index">
+                  <div class="activities-group">
+                    <div class="{{y.billable == 'Y' ? 'green1' : 'red'}}">
+                      <div class="activity-tab pull-left {{y.task_id}}-activity {{otherData[0].task_id ==y.task_id ? 'selected':'' }}" ng-click="saveActivity(y.task_id,y.task_name)">{{ y.task_name }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-1">
+            <thead>
+              <th>Estimated Hours</th>
+              <th>Executed Quantity</th>
+              <th></th>
+            </thead>
+          </table> -->
+          <br>
+          <div class="row" style="margin-left: -6px;margin-right: -12px;">
+            <div class="col-md-3" style="width: 26%;">
+              &nbsp;&nbsp;<label style="vertical-align: top;" title="Actual Time Spent">ATS</label>&nbsp;
+              <i class="fa fa-refresh btnCopyHHMMClass" style="color:#00AEEF;" ng-click="copyHHMM(currTable,curr_index);"></i>
+            </div>
+            <div class="col-md-2">
+              <label style="vertical-align: top;"># Quant</label>
+            </div>
+            <div class="col-md-3">
+              <input type="checkbox" ng-model="otherData[0].peer_rework" ng-true-value="'Y'" ng-false-value="'N'" ng-change="peerDropdown(otherData[0].peer_rework)" />
+              <label style="vertical-align: top;">Peer Rwrk</label>
+            </div>
+            <div class="col-md-3" style="width: 28%;">
+              <input type="checkbox" ng-model="otherData[0].weekend_hours" ng-true-value="'Y'" ng-false-value="'N'">
+              <label style="vertical-align: top;">Weekend Hrs</label>
+            </div>
+          </div>
+          <div class="row" style="margin-left: -6px;margin-right: -12px;">
+            <div class="col-md-3" style="width: 26%;">
+              <!-- <input type="text" class="form-control" ng-model="otherData[0].est_hours" style="width:50px">
+              <input type="text" class="form-control" ng-model="otherData[0].est_mins" style="width:50px"> -->
+              <input type="text" integers-only maxlength="2" ng-model="otherData[0].est_hours" placeholder="HH" style="width: 42px;{{estHrsAlert}}" class="form-control pull-left">
+              <b class="pull-left" style="font-weight:600; margin:5px"> : </b>
+              <input type="text" integers-only maxlength="2" ng-model="otherData[0].est_mins" placeholder="MM" style="width: 42px;{{estMinsAlert}}" class="form-control pull-left">
+            </div>
+            <div class="col-md-2">
+              <input type="text" maxlength="4" integers-only class="form-control" ng-model="otherData[0].executed_quantity" style="width:50px">
+            </div>
+            <div class="col-md-3">
+              <select class="form-control" ng-disabled="disablePeerDropdown" style="width:104px;height: 25px;padding: 2px;border-radius: 10px;width: 104px;{{peerEmpAlert}}" ng-model="otherData[0].selectedEmployee"  ng-options="option as option.employee_name_no for option in billedPeerList">
+                  <option ng-selected="-1" value=''>Please Select</option>
+              </select>
+            </div>
+            <div class="col-md-3" style="width: 28%;">
+
+            </div>
+          </div>
+          <div class="row" style="margin-left: 0px;margin-right: 0px;">
+            <div class="col-md-6" style="margin-right: -35px;">
+              Estimated Time (hh:mm) &nbsp;:<!--{{estHrsLabel}}:{{estMinsLabel}}-->
+            </div>
+            <div class="col-md-6">
+              <input type="text" integers-only maxlength="2" ng-model="estHrsLabel" placeholder="HH" style="width: 42px;{{estHrsLabelValidate}}" class="form-control pull-left">
+              <b class="pull-left" style="font-weight:600; margin:5px"> : </b>
+              <input type="text" integers-only maxlength="2" ng-model="estMinsLabel" placeholder="MM" style="width: 42px;{{estMinsLabelValidate}}" class="form-control pull-left">
+            </div>
+          </div>
+          <div class="row" style="margin-left: 0px;margin-right: 0px;">
+            <textarea rows="4" cols="60" class="form-control" ng-model="comment"></textarea>
+          </div>
+          <div class="row pull-right" style="margin-left: 0px;margin-right: 0px;">
+            <input type="checkbox" ng-model="Recurring_Task_qb" ng-true-value="'Y'" ng-false-value="'N'">
+            <label>Recurring</label>
+            <button type="button" ng-show="billBtnSH" class="btn btn-danger" ng-click="quickBill(otherData[0],currData);">Bill</button>
+            <button type="button" class="btn btn-success" ng-click="save_details(otherData[0],currData)">Save</button>
+          </div>
+          <!-- <strong>
+            <h4 style="font-weight:60" ng-bind="right_project_name"></h4>
+          </strong>
+
+          <div class="my-row" ng-if="right_project_id != 0">
+            <div class="form-group">
+              <p>Delivery</p>
+              <select class="form-control" ng-model="select.delivery_name" ng-options="x as x.name for x in names">
+                </select>
+            </div>
+            <div> Tasks : </div>
+            <uib-tabset active="activeIndex">
+              <uib-tab index="$index" ng-repeat="x in entities_scope track by $index" heading="{{x.service_name}}" ng-click="setServiceTab($index,x.service_id)">
+              </uib-tab>
+            </uib-tabset>
+            <div class="panel-body" style="margin-top:30px">
+              <div class="tab-content">
+                <div ng-repeat="y in active_activities_array">
+                  <div class="activities-group">
+                    <div class=" {{y.billable == 'Y' ? 'green1' : 'red'}}">
+                      <div class="activity-tab pull-left {{y.task_id}}-activity {{otherData[0].task_id ==y.task_id ? 'selected':'' }}" ng-click="saveActivity(y.task_id,y.task_name)">{{ y.task_name }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="my-row" ng-if="right_project_id == 0">
+            <p>Client</p>
+              <select class="form-control" ng-model="select.selectedClient" ng-options="x.id as x.name for x in names">
+              </select>
+              {{select.selectedClient}}
+              <div> Tasks : </div>
+              <uib-tabset active="activeIndex">
+                <uib-tab index="$index" ng-repeat="x in entities_scope track by $index" heading="{{x.service_name}}" ng-click="setServiceTab($index,x.service_id)">
+                </uib-tab>
+              </uib-tabset>
+              <div class="panel-body" style="margin-top:30px">
+                <div class="tab-content">
+                  <div ng-repeat="y in active_activities_array">
+                    <div class="activities-group">
+                      <div class="{{y.billable == 'Y' ? 'green1' : 'red'}}">
+                        <div class="activity-tab pull-left {{y.task_id}}-activity {{otherData[0].task_id ==y.task_id ? 'selected':'' }}" ng-click="saveActivity(y.task_id,y.task_name)">{{ y.task_name }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="checkbox-elem" style="margin-top:20px">
+            <div class="cold-md-2 pull-left" style="margin-left:10px">
+              <label>Estimated Hours</label>
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="otherData[0].est_hours" style="width:50px">
+                <input type="text" class="form-control" ng-model="otherData[0].est_mins" style="width:50px">
+              </div>
+            </div>
+            <div class="cold-md-2 pull-left" style="margin-left:10px">
+              <label>Executed Quantity</label>
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="otherData[0].executed_quantity" style="width:50px">
+              </div>
+            </div>
+            <div class="cold-md-2 pull-left" ng-if="right_project_id != 0" style="margin-left:10px">
+              <label>Peer Rework</label>
+              <div class="form-group">
+                <input type="checkbox" ng-model="otherData[0].peer_rework" ng-true-value="'Y'" ng-false-value="'N'" ng-change="peerDropdown(otherData[0].peer_rework)" />
+                <select class="form-control" style="width:140px" ng-model="otherData[0].selectedEmployee" data-style="btn-primary" ng-options="option as option.employee_name_no for option in billedPeerList">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                </select>
+              </div>
+            </div>
+            <div class="cold-md-2 pull-left" ng-if="right_project_id != 0" style="margin-left:10px">
+              <label>Weekend Hours</label>
+              <div class="form-group">
+                <input type="checkbox" ng-model="otherData[0].weekend_hours" ng-true-value="'Y'" ng-false-value="'N'">
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-left:10px">
+            {{ otherData.comments }}
+            <div class="comments">
+            </div>
+            <div class="clear-fix"></div>
+            <textarea rows="4" cols="60" class="form-control" ng-model="comment">
+           </textarea>
+          </div>
+          <div class="clear-fix"></div>
+          <div class="save-btn row form-group">
+            <button class="btn btn-info pull-right" ng-click="save_details(otherData[0])"> save </button>
+          </div> -->
+        </div>
+        <div ng-hide="deliveryDetailsShow">
+          <div>
+            No Project Selected!!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content tab-content-sec hide">
+      <div id="paginator4" class="col-md-6"></div>
+      <div class="col-md-4">
+        <button ng-click="handoverOnload()" ng-show="showHandoverBtn" data-toggle="modal" data-target="#responsive-modal" class="model_img img-responsive">Handover</button>
+      </div>
+
+      <div>
+        <table class="table color-bordered-table info-bordered-table table-responsive" ng-show="showTable.projectTable">
+          <thead>
+            <tr>
+              <!-- <th rowspan="2"></th> -->
+              <th style="width:20% !important">Project Name</th>
+              <th style="width:15% !important">Delivery</th>
+              <th style="width:18% !important">Task</th>
+              <th style="width:15% !important">Date</th>
+              <th style="width:11% !important">Time(HH:MM)</th>
+              <th style="width:7% !important">Qty</th>
+              <th style="width:3% !important">Weekend Hrs ? </th>
+              <th style="width:4% !important">Peer Rework ? </th>
+              <th style="width:18% !important">Peer Name</th>
+              <th style="width:8% !important">Comments</th>
+              <th style="width:6% !important">Action(s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="project in projectBilledList">
+              <td>
+                <label ng-hide="project.show">{{project.project_number}} / {{project.project_name}}</label>
+                <select class="form-control" ng-show="project.show" ng-change="onProjectChange(project);" ng-style="project.p_border" ng-model="project.selectedProject" data-style="btn-primary" ng-options="option.project_id as option.project_name for option in projectList">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                  </select>
+              </td>
+              <td>
+                <label ng-hide="project.show">{{project.deliverable_name}}</label>
+                <select class="form-control" ng-show="project.show" ng-model="project.selectedDeliverable" ng-style="project.d_border" data-style="btn-primary" ng-options="option.deliverable_id as option.deliverable_name for option in projectDeliverableList">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                  </select>
+              </td>
+              <td>
+                <label ng-hide="project.show">{{project.task_service_name}}</label>
+                <select class="form-control" ng-show="project.show" ng-model="project.selectedTask" ng-style="project.t_border" data-style="btn-primary" ng-options="option.task_id as option.task_name for option in taskList">
+                  <option ng-selected="-1" value=''>Please Select</option>
+                </select>
+              </td>
+              <td>
+                <label ng-hide="project.show">{{project.execution_date}}</label>
+                <input type="text" ng-show="project.show" data-date-format="dd-MMM-yyyy" dateType="String" modelDateFormat="yyyy-MM-dd HH:mm:ss" class="col-sm-2 form-control" ng-model="project.execution_date" data-autoclose="1" placeholder="Date" bs-datepicker>
+              </td>
+              <td>
+                <label ng-hide="project.show">{{project.executed_hours}}</label>
+                <!--<input type="text" ng-show="project.show" id="executed_hours" class="col-sm-2 form-control" timeType="String" data-show-meridian="false" modelTimeFormat="HH:mm" ng-model="project.executed_hours" data-time-format="HH:mm" placeholder="Time" bs-timepicker>-->
+                <input class="form-control" ng-style="project.timeBorder" integers-only type="text" id="hours" ng-model="project.hours" ng-show="project.show" style="width:42px;display:inline-block;" />
+                <input class="form-control" ng-style="project.timeBorder" integers-only type="text" id="mins" ng-model="project.mins" ng-show="project.show" style="width:42px;display:inline-block;" />
+              </td>
+              <td>
+                <label ng-hide="project.show">{{project.executed_quantity}}</label>
+                <input type="text" ng-show="project.show" class="col-sm-2 form-control" ng-model="project.executed_quantity" />
+              </td>
+              <td>
+                <!--<checkbox id="weekendHours" ng-model="project.isPeerRework" name="custom-name" ng-true-value="Y" ng-false-value="N"></checkbox>-->
+                <input type="checkbox" ng-disabled="!project.show" class="check" id="flat-checkbox-disabled" ng-model="project.isWeekend" ng-true-value="'Y'" ng-false-value="'N'" data-checkbox="icheckbox_flat-red" />
+              </td>
+              <td>
+                <input type="checkbox" ng-disabled="!project.show" class="check" id="flat-checkbox-disabled" ng-model="project.isPeerRework" ng-true-value="'Y'" ng-false-value="'N'" data-checkbox="icheckbox_flat-red" ng-click="disablePeerDropdown(project)"/>
+              </td>
+              <td>
+                <label ng-hide="project.show">{{project.peer_name}}</label>
+                <select class="form-control" ng-show="project.show" ng-style="project.pr_border" ng-model="project.selectedPeerName" data-style="btn-primary" ng-options="option as option.employee_name_no for option in peerProjectList"
+                ng-disabled="project.disablePeerDropdown">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                  </select>
+              </td>
+              <td>
+                <!--<label ng-hide="project.show">{{project.description}}</label>-->
+                <!--<textarea class="form-control" rows="2" ng-show="project.show" rows="5" id="comment" ng-model="project.description"></textarea>-->
+                <img src="../images/emptyComments.png" ng-if="!project.showCmntImg" style="height:25px" title="{{project.description}}" ng-click = "onPageChanges($index,'showCmntBox');" >
+                <img src="../images/filledComments.png" ng-if="project.showCmntImg" style="height:25px" title="{{project.description}}" ng-click = "onPageChanges($index,'showCmntBox');">
+                <div  id="addCommentsId" ng-style = "project.cmntBoxStyle" class="addCommentClass">
+                 <span class="glyphicon glyphicon-remove pull-right" ng-click = "onPageChanges($index,'hideCmntBox')"></span>
+                  <textarea  style="height: 52%; width: 100%; margin-top: 5%;" ng-disabled="project.disabled" ng-model = "project.description"></textarea>
+                  <button type="button " class="btn btn-primary commentSubmit" ng-click ="onPageChanges($index,'hideCmntBox');">Submit</button>
+                </div>
+              </td>
+              <td colspan="2">
+                <!--<div class="col-lg-4 col-sm-8 col-xs-6">-->
+                <!--<button type="submit" class="form-control"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>-->
+                <button class="btn btn-facebook btn-circle billedActivities_btn_class" ng-hide="project.show" ng-click="edit(project,'p')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <button class="btn btn-facebook btn-circle billedActivities_btn_class" ng-hide="project.show" ng-click="save(project,'d')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <button class="btn btn-facebook btn-circle billedActivities_btn_class" ng-show="project.show" ng-click="save(project,'p')"><i class="fa fa-save" aria-hidden="true"></i></button>
+                <button class="btn btn-facebook btn-circle billedActivities_btn_class" ng-show="project.show" ng-click="cancel(project,'p')"><i class="fa fa-remove" aria-hidden="true"></i></button>
+                <!--</div>-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table class="table color-bordered-table info-bordered-table table-responsive" ng-show="showTable.nonProjectTable">
+          <thead>
+            <tr>
+              <!-- <th rowspan="2"></th> -->
+              <th style="width:20% !important">Client Name</th>
+              <!--<th style="width:18% !important">Delivery</th>-->
+              <th style="width:18% !important">Task</th>
+              <th style="width:15% !important">Date</th>
+              <th style="width:6% !important">Time(HH:MM)</th>
+              <th style="width:7% !important">Qty</th>
+              <!--<th style="width:3% !important">Weekend Hrs ? </th>
+                <th style="width:4% !important">Peer Rework ? </th>
+                <th style="width:18% !important">Peer Name</th>-->
+              <th style="width:8% !important">Comments</th>
+              <th style="width:6% !important">Action(s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="np in nonProjectBilledList">
+              <td>
+                <label ng-hide="np.show">{{np.client_name}}</label>
+                <select class="form-control" ng-show="np.show" ng-style="np.npc_border" ng-model="np.selectedClient" data-style="btn-primary" ng-options="option.client_id as option.client_name for option in clientList">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                  </select>
+              </td>
+              <!--<td>
+                  <label ng-hide="np.show">{{np.deliverable_name}}</label>
+                  <select class="form-control" ng-show="np.show" ng-model="np.selectedDeliverable"
+                          data-style="btn-primary"
+                          ng-options="option.project_deliverable_id as option.deliverable_name for option in projectDeliverableList | filter:{project_id:np.project_id}">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                  </select>
+                </td>-->
+              <td>
+                <label ng-hide="np.show">{{np.task_service_name}}</label>
+                <select class="form-control" ng-show="np.show" ng-style="np.npt_border" ng-model="np.selectedTask" data-style="btn-primary" ng-options="option.task_id as option.task_name for option in taskList">
+                    <option ng-selected="-1" value=''>Please Select</option>
+                  </select>
+              </td>
+              <td>
+                <label ng-hide="np.show">{{np.execution_date}}</label>
+                <input type="text" ng-show="np.show" data-date-format="dd-MMM-yyyy" dateType="String" modelDateFormat="yyyy-MM-dd HH:mm:ss" class="col-sm-2 form-control" ng-model="np.execution_date" data-autoclose="1" placeholder="Date" bs-datepicker>
+              </td>
+              <td>
+                <label ng-hide="np.show">{{np.executed_hours}}</label>
+                <!--<input type="text" ng-show="np.show" id="executed_hours" class="col-sm-2 form-control" timeType="String" data-show-meridian="false" modelTimeFormat="HH:mm" ng-model="np.executed_hours" data-time-format="HH:mm" placeholder="Time" bs-timepicker>-->
+                <input class="form-control" ng-style="np.timeBorder" integers-only type="text" id="hours" ng-model="np.hours" ng-show="np.show" style="width:45px;display:inline-block;" />
+                <input class="form-control" ng-style="np.timeBorder" integers-only type="text" id="mins" ng-model="np.mins" ng-show="np.show" style="width:45px;display:inline-block;" />
+              </td>
+              <td>
+                <label ng-hide="np.show">{{np.executed_quantity}}</label>
+                <input type="text" ng-show="np.show" class="col-sm-2 form-control" ng-model="np.executed_quantity" />
+              </td>
+              <td>
+                <!--<label ng-hide="np.show">{{np.description}}</label>
+                <textarea class="form-control" rows="2" ng-show="np.show" rows="2" id="comment" ng-model="np.description"></textarea>-->
+                <img src="../images/emptyComments.png" ng-if="!np.showCmntImg" style="height:25px" title="{{np.description}}" ng-click = "onPageChangesNP($index,'showCmntBox');" >
+                <img src="../images/filledComments.png" ng-if="np.showCmntImg" style="height:25px" title="{{np.description}}" ng-click = "onPageChangesNP($index,'showCmntBox');">
+                <div  id="addCommentsId" ng-style = "np.cmntBoxStyle" class="addCommentClass">
+                 <span class="glyphicon glyphicon-remove pull-right" ng-click = "onPageChangesNP($index,'hideCmntBox')"></span>
+                  <textarea ng-disabled="np.disabled" style="height: 52%; width: 100%; margin-top: 5%;" ng-model = "np.description"></textarea>
+                  <button type="button " class="btn btn-primary commentSubmit" ng-click ="onPageChangesNP($index,'hideCmntBox');">Submit</button>
+                </div>
+              </td>
+              <td colspan="2">
+                <!--<div class="col-lg-4 col-sm-8 col-xs-6">-->
+                <!--<button type="submit" class="form-control"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>-->
+                <button class="btn btn-facebook btn-circle npbilledActivities_btn_class" ng-hide="np.show" ng-click="edit(np,'np')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <button class="btn btn-facebook btn-circle npbilledActivities_btn_class" ng-hide="np.show" ng-click="save(np,'d')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <button class="btn btn-facebook btn-circle npbilledActivities_btn_class" ng-show="np.show" ng-click="save(np,'np')"><i class="fa fa-save" aria-hidden="true"></i></button>
+                <button class="btn btn-facebook btn-circle npbilledActivities_btn_class" ng-show="np.show" ng-click="cancel(np,'np')"><i class="fa fa-remove" aria-hidden="true"></i></button>
+                <!--</div>-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- <div ng-show="isSet(1)">
+
+    </div>
+
+    <div ng-show="isSet(2)">
+
+    </div> -->
+
+    <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog" style="width:90%">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Handover</h4> </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <table class="table color-bordered-table info-bordered-table table-responsive" ng-show="showTable.h_projectTable">
+                  <thead>
+                    <tr>
+                      <th style="width:100% !important" colspan="7">
+                        Project Time
+                      </th>
+                    </tr>
+                    <tr>
+                      <!-- <th rowspan="2"></th> -->
+                      <th style="width:18% !important">Project No / Name</th>
+                      <th style="width:12% !important">Delivery</th>
+                      <th style="width:16% !important">Task</th>
+                      <th style="width:5% !important">Status</th>
+                      <th style="width:25% !important">Assigned To</th>
+                      <th style="width:7% !important">Est Hours</th>
+                      <th style="width:15% !important">Handover Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="projectObj in h_projectList">
+                      <td>{{projectObj.project_name}}</td>
+                      <td>{{projectObj.deliverable_name}}</td>
+                      <td>{{projectObj.task_service_name}}</td>
+                      <td>
+                        <label>
+                            <input class="{{projectObj.class}}" id="complete" type="radio" name="{{projectObj.project_task_id}}" ng-value="true" ng-change="assignedTo(projectObj)"
+                                    ng-model="projectObj.status" ng-true-value="completed" ng-false-value="n"
+                                    />C
+                          </label>
+                        <label>
+                              <input class="{{projectObj.class}}" id="pending" type="radio" name="{{projectObj.project_task_id}}" ng-value="false" ng-change="assignedTo(projectObj)"
+                                      ng-model="projectObj.status" ng-true-value="pending" ng-false-value="n"
+                                      />P
+                          </label>
+                      </td>
+                      <td>
+                        <input id="pic" type="text" ng-model="projectObj.assign_employee_name" autocomplete="off" ng-disabled="projectObj.disableAssignedTo" ng-style="projectObj.css" class="form-control" uib-typeahead="item as item.employee_name for item in assignToEmpList | filter:{employee_name:$viewValue}">
+                      </td>
+                      <td>
+                        <input type="text" id="estimated_hours" class="col-sm-2 form-control" autocomplete="off" ng-disabled="projectObj.disableAssignedTo" timeType="String" data-show-meridian="false" modelTimeFormat="HH:mm" ng-model="projectObj.estimated_hours" data-time-format="HH:mm" placeholder="Est Hours" bs-timepicker>                        {{project.estimated_hours}}
+                      </td>
+                      <td>
+                        <textarea class="form-control" rows="2" id="comment" ng-model="projectObj.handover_comments" ng-style="{'width': 100 + '%'}"></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-group">
+                <table class="table color-bordered-table info-bordered-table table-responsive" ng-show="showTable.h_nonProjectTable">
+                  <thead>
+                    <tr>
+                      <th style="width:100% !important" colspan="7">
+                        Non Project Time
+                      </th>
+                    </tr>
+                    <tr>
+                      <!-- <th rowspan="2"></th> -->
+                      <th style="width:20% !important">Client Name</th>
+                      <th style="width:20% !important">Task</th>
+                      <th style="width:3% !important">Status</th>
+                      <th style="width:23% !important">Assigned To</th>
+                      <th style="width:7% !important">Est Hours</th>
+                      <th style="width:15% !important">Handover Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="np in h_nonProjectListTemp">
+                      <td>{{np.client_name}}</td>
+                      <td>{{np.task_service_name}}</td>
+                      <td>
+                        <label>
+                            <input class="{{np.class}}" id="complete" type="radio" name="{{np.project_task_id}}" ng-value="true" ng-change="assignedTo(np)"
+                                    ng-model="np.status" ng-true-value="completed" ng-false-value="n"
+                                    ng-required="true"/>C
+                          </label>
+                        <label>
+                            <input class="{{np.class}}" id="pending" type="radio" name="{{np.project_task_id}}" ng-value="false" ng-change="assignedTo(np)"
+                                    ng-model="np.status" ng-true-value="pending" ng-false-value="n"
+                                    ng-required="true"/>P
+                          </label>
+                      </td>
+                      <td>
+                        <input id="pic" type="text" ng-model="np.assign_employee_name" autocomplete="off" ng-disabled="np.disableAssignedTo" ng-style="np.css" class="form-control" uib-typeahead="item as item.employee_name for item in assignToEmpList | filter:{employee_name:$viewValue}">
+                      </td>
+                      <td>
+                        <input type="text" id="estimated_hours" class="col-sm-2 form-control" autocomplete="off" ng-disabled="np.disableAssignedTo" timeType="String" data-show-meridian="false" modelTimeFormat="HH:mm" ng-model="np.estimated_hours" data-time-format="HH:mm" placeholder="Est Hours" bs-timepicker>
+                      </td>
+                      <td>
+                        <textarea class="form-control" rows="2" id="comment" ng-model="np.handover_comments"></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-group">
+                <table class="table color-bordered-table info-bordered-table table-responsive" ng-show="showTable.additionalHandoverTable">
+                  <thead>
+                    <tr>
+                      <th style="width:100% !important" colspan="7">
+                        Additional Handover
+                      </th>
+                    </tr>
+                    <tr>
+                      <!-- <th rowspan="2"></th> -->
+                      <th style="width:25% !important">Project Name</th>
+                      <th style="width:1% !important">Status</th>
+                      <th style="width:18% !important">Assigned To</th>
+                      <th style="width:7% !important">Est Hours</th>
+                      <th style="width:15% !important">Handover Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="addObj in additionalHandoverList">
+                      <td>
+                        <select class="form-control" ng-model="addObj.selectedProject" data-style="btn-primary" ng-options="option.project_id as option.project_name for option in projectDropdownList" ng-required="true" ng-style="addObj.projectDDcss">
+                            <option ng-selected="-1" value=''>Please Select</option>
+                          </select>
+                      </td>
+                      <td>
+                        <label>
+                            <input class="{{addObj.class}}" id="complete" type="radio" name="{{addObj.unique_id}}" ng-value="true" ng-change="assignedTo(addObj)"
+                                    ng-model="addObj.status" ng-true-value="completed" ng-false-value="n" />C
+                          </label>
+                        <label>
+                            <input class="{{addObj.class}}" id="pending" type="radio" name="{{addObj.unique_id}}" ng-value="false" ng-change="assignedTo(addObj)"
+                                    ng-model="addObj.status" ng-true-value="pending" ng-false-value="n" />P
+                          </label>
+                      </td>
+                      <td>
+                        <input id="pic" type="text" autocomplete="off" ng-model="addObj.assign_employee_name" autocomplete="off" ng-disabled="addObj.disableAssignedTo" ng-style="addObj.css" class="form-control" uib-typeahead="item as item.employee_name for item in assignToEmpList | filter:{employee_name:$viewValue}">
+                      </td>
+                      <td>
+                        <input type="text" id="estimated_hours" class="col-sm-2 form-control" autocomplete="off" ng-disabled="addObj.disableAssignedTo" timeType="String" data-show-meridian="false" modelTimeFormat="HH:mm" ng-model="addObj.estimated_hours" data-time-format="HH:mm" placeholder="Est Hours" bs-timepicker>
+                      </td>
+                      <td>
+                        <textarea class="form-control" rows="2" id="comment" ng-model="addObj.handover_comments" ng-required="true" ng-style="addObj.commentCss"></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" style="float:left" ng-click="addRows();">Additional Handover</button>
+                <button type="submit" class="btn btn-danger waves-effect waves-light" ng-click="saveHandover()" data-dismiss="{{closeModal}}">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--</div>-->
+<script>
+  window.onbeforeunload = function() {
+    return true;
+  }
+
+  $(function() {
+    var pause_array = [];
+    var input = [];
+    $('.pause-all').click(function(){
+    $( ".glyphicon-pause-task:not(.hide)" ).each(function( v,index ) {
+        var time_attr =  $(this).attr('time');
+        input.push(time_attr);
+        });
+        angular.forEach(input, function(value, key) {
+          //console.log(value);
+          $('.'+value+'-pause').click();
+        });
+        //$("#collapseTwoId").click();
+      });
+
+    //   var pause_array = [];
+    //   var data_time = $('.ok').attr('time');
+    // pause_array.push(data_time);
+    //
+    // $('.ok').click();
+
+    //$('.'+data_time).click();
+
+
+    $('.glyphicon-trash').addClass('hide');
+    /*setTimeout(function() {
+      $('body').find('.unbilled-tbl-1').find('tr').eq(1).find('.proj-name').click();
+    }, 1000);*/
+
+
+    $('.date-input').datepicker({
+      dateFormat: 'y-m-d',
+      endDate: '+0d',
+      autoclose: true
+    });
+    $('body').on('focus', '.date-input', function() {
+      $(this).datepicker({
+        dateFormat: 'y-m-d',
+        endDate: '+0d',
+        autoclose: true
+      });
+
+    });
+
+    $("#todays-task").click(function() {
+      $("#todays-task-table").slideToggle();
+    });
+
+    $('body').on('click', '.unbilled-tbl-1 tr ', function() {
+      $('tr').removeClass('highlight');
+      $('tr').find('.glyphicon-trash').addClass('hide');
+      $(this).addClass('highlight');
+      $('.highlight').find('.glyphicon-trash').removeClass('hide');
+
+    });
+
+    $('body').on('click', '.unbilled-tbl-2 tr ', function() {
+      $('tr').removeClass('highlight');
+      $('tr').find('.glyphicon-trash').addClass('hide');
+      $(this).addClass('highlight');
+      $('.highlight').find('.glyphicon-trash').removeClass('hide');
+
+    });
+
+    $('body').on('click', '.unbilled-tbl-3 tr ', function() {
+      $('tr').removeClass('highlight');
+      $('tr').find('.glyphicon-trash').addClass('hide');
+      $(this).addClass('highlight');
+      $('.highlight').find('.glyphicon-trash').removeClass('hide');
+
+    });
+
+    function highlight(tableIndex) {
+      // Just a simple check. If .highlight has reached the last, start again
+
+      // Element exists?
+      if (tableIndex > -1 && $('.unbilled-tbl-1 tbody tr:eq(' + tableIndex + ')').length > 0 && tableIndex < $('.unbilled-tbl-1 tbody tr').length) {
+        // Remove other highlights
+        $('.unbilled-tbl-1 tbody tr').removeClass('highlight');
+
+        // Highlight your target
+        $('.unbilled-tbl-1 tbody tr:eq(' + tableIndex + ')').addClass('highlight');
+        $('.highlight').find('td .proj-name').click();
+
+      }
+    }
+
+    function highlightToday(tableIndex) {
+      // Just a simple check. If .highlight has reached the last, start again
+      // Element exists?
+      if (tableIndex > -1 && $('- tbody tr:eq(' + tableIndex + ')').length > 0 && tableIndex < $('.unbilled-tbl-2 tbody tr').length) {
+        // Remove other highlights
+        $('.unbilled-tbl-2 tbody tr').removeClass('highlight');
+
+        // Highlight your target
+        $('.unbilled-tbl-2 tbody tr:eq(' + tableIndex + ')').addClass('highlight');
+        $('.highlight').find('td .proj-name').click();
+      }
+    }
+
+    function highlightFuture(tableIndex) {
+      // Just a simple check. If .highlight has reached the last, start again
+      // Element exists?
+      if (tableIndex > -1 && $('.unbilled-tbl-3 tbody tr:eq(' + tableIndex + ')').length > 0 && tableIndex < $('.unbilled-tbl-3 tbody tr').length) {
+        // Remove other highlights
+        $('.unbilled-tbl-3 tbody tr').removeClass('highlight');
+        // Highlight your target
+        $('.unbilled-tbl-3 tbody tr:eq(' + tableIndex + ')').addClass('highlight');
+        $('.highlight').find('td .proj-name').click();
+      }
+    }
+
+    $(document).keydown(function(e) {
+      if ($('.unbilled-tbl-1').find('.highlight').length > 0) {
+        $('.unbilled-tbl-2').find('tr').removeClass('highlight');
+        $('.unbilled-tbl-3').find('tr').removeClass('highlight');
+
+        //console.log(e.which);
+        //console.log($('.highlight').attr('index'));
+        var index = $('.highlight').attr('index');
+        index = parseInt(index);
+        if (e.which == 40) { //down arrow
+          highlight(index + 1);
+
+        } else if (e.which == 38) { //up arrow
+          highlight(index - 1);
+
+        }
+      }
+
+      if ($('.unbilled-tbl-2').find('.highlight').length > 0) {
+        $('.unbilled-tbl-1').find('tr').removeClass('highlight');
+        $('.unbilled-tbl-3').find('tr').removeClass('highlight');
+
+        //console.log($('.highlight').attr('index'));
+        var index = $('.highlight').attr('index');
+        index = parseInt(index);
+        if (e.which == 40) { //down arrow
+          highlightToday(index + 1);
+
+        } else if (e.which == 38) { //up arrow
+          highlightToday(index - 1);
+
+        }
+      }
+
+      if ($('.unbilled-tbl-3').find('.highlight').length > 0) {
+        $('.unbilled-tbl-1').find('tr').removeClass('highlight');
+        $('.unbilled-tbl-2').find('tr').removeClass('highlight');
+
+        //console.log($('.highlight').attr('index'));
+        var index = $('.highlight').attr('index');
+        index = parseInt(index);
+        if (e.which == 40) { //down arrow
+          highlightFuture(index + 1);
+
+        } else if (e.which == 38) { //up arrow
+          highlightFuture(index - 1);
+
+        }
+      }
+
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(function() {
+
+    function toggleChevron(e) {
+        $(e.target)
+                .prev('.panel-heading')
+                .find("i")
+                .toggleClass('rotate-icon');
+        $('.panel-body.animated').toggleClass('zoomIn zoomOut');
+    }
+
+    $('#accordion').on('hide.bs.collapse', toggleChevron);
+    $('#accordion').on('show.bs.collapse', toggleChevron);
+
+
+    /*$('.stopSelection').click(function(event){
+       event.preventDefault();
+       event.stopPropagation();
+    });*/
+
+  });
+
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    "use strict";
+    var e = $("body");
+    $(function() {
+        $(".preloader").fadeOut(), $("#side-menu").metisMenu()
+      }), $(".right-side-toggle").on("click", function() {
+        $(".right-sidebar").slideDown(50).toggleClass("shw-rside"), $(".fxhdr").on("click", function() {
+          e.toggleClass("fix-header")
+        }), $(".fxsdr").on("click", function() {
+          e.toggleClass("fix-sidebar")
+        });
+        var i = $(".fxhdr");
+        e.hasClass("fix-header") ? i.attr("checked", !0) : i.attr("checked", !1), e.hasClass("fix-sidebar") ? i.attr("checked", !0) : i.attr("checked", !1)
+      }), $(function() {
+        var i = function() {
+            var i = 60,
+              s = window.innerWidth > 0 ? window.innerWidth : this.screen.width,
+              l = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
+            768 > s ? ($("div.navbar-collapse").addClass("collapse"), i = 100) : $("div.navbar-collapse").removeClass("collapse"), 1170 > s ? (e.addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $(".logo span").hide()) : (e.removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(".logo span").show()), l -= i, 1 > l && (l = 1), l > i && $("#page-wrapper").css("min-height", l + "px")
+          },
+          s = window.location,
+          l = $("ul.nav a").filter(function() {
+            return this.href === s || 0 === s.href.indexOf(this.href)
+          }).addClass("active").parent().parent().addClass("in").parent();
+        l.is("li") && l.addClass("active"), $(window).ready(i), $(window).on("resize", i)
+      })/*, $(".open-close").on("click", function() {
+        $("body").hasClass("content-wrapper") ? ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"), $("body").removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(".logo span").show()) : ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $("body").addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(".logo span").hide())
+      })*/,
+      function(e, i, s) {
+        var l = '[data-perform="panel-collapse"]',
+          o = '[data-perform="panel-dismiss"]';
+        e(l).each(function() {
+          var i = {
+              toggle: !1
+            },
+            s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper"),
+            o = e(this).children("i");
+          l.length || (l = s.children(".panel-heading").nextAll().wrapAll("<div/>").parent().addClass("panel-wrapper"), i = {}), l.collapse(i).on("hide.bs.collapse", function() {
+            o.removeClass("ti-minus").addClass("ti-plus")
+          }).on("show.bs.collapse", function() {
+            o.removeClass("ti-plus").addClass("ti-minus")
+          })
+        }), e(s).on("click", l, function(i) {
+          i.preventDefault();
+          var s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper");
+          l.collapse("toggle")
+        }), e(s).on("click", o, function(i) {
+          function l() {
+            var i = s.parent();
+            s.remove(), i.filter(function() {
+              return e(this).is('[class*="col-"]') && 0 === e(this).children("*").length
+            }).remove()
+          }
+          i.preventDefault();
+          var s = e(this).closest(".panel");
+          l()
+        })
+      }(jQuery, window, document), $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+      }), $(function() {
+        $('[data-toggle="popover"]').popover()
+      }), $(".list-task li label").on("click", function() {
+        $(this).toggleClass("task-done")
+      }), $(".settings_box a").on("click", function() {
+        $("ul.theme_color").toggleClass("theme_block")
+      }), $(".collapseble").on("click", function() {
+        $(".collapseblebox").fadeToggle(350)
+      }), $(".slimscrollright").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".slimscrollsidebar").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".chat-list").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), e.trigger("resize"), $(".visited li a").on("click", function(e) {
+        $(".visited li").removeClass("active");
+        var i = $(this).parent();
+        i.hasClass("active") || i.addClass("active"), e.preventDefault()
+      }), $("#to-recover").on("click", function() {
+        $("#loginform").slideUp(), $("#recoverform").fadeIn()
+      }), $(".navbar-toggle").on("click", function() {
+        $(".navbar-toggle i").toggleClass("ti-menu").addClass("ti-close")
+      })
+  });
+</script>

@@ -1,0 +1,702 @@
+<script>
+  $("#divID *").attr("disabled", "disabled").off('click');
+
+  $(document).ready(function() {
+    $('#modifyVendorId1').click(function() {
+      $('#addVendorModal').modal('hide');
+      $('#modifyVendorModal').modal('show');
+    });
+
+    $('#addVendorId2').click(function() {
+      $('#modifyVendorModal').modal('hide');
+      $('#addVendorModal').modal('show');
+    });
+  });
+
+  $(document).ready(function() {
+    $('input').tooltip();
+  });
+
+  $('body').tooltip({
+    selector: '[rel="tooltip"]'
+  });
+
+  function phoneno() {
+    $('#phone').keypress(function(e) {
+      var a = [];
+      var k = e.which;
+
+      for (i = 48; i < 58; i++)
+        a.push(i);
+
+      if (!(a.indexOf(k) >= 0))
+        e.preventDefault();
+    });
+  }
+</script>
+
+<style>
+  .div1 {
+    width: 100%;
+    height: 72px;
+    border: 1px solid transparent;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  /*code for hinding input type = "number" SPIN box*/
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  #scrollable-dropdown-menu .dropdown-menu {
+    max-height: 235px;
+    overflow-y: auto;
+  }
+
+  .commentSubmit {
+    margin-top: 3px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #28b2f1;
+    color: white;
+    border: #28b2f1;
+    width: 65px;
+    height: 31px;
+    margin-left: 07px;
+  }
+
+  .addCommentClass {
+    border: 2px solid #7fabec;
+    padding: 5px;
+    background: rgb(253, 255, 252);
+    border-radius: 9px;
+    height: 120px;
+    width: 160px;
+    position: absolute;
+    /*overflow : overlay; */
+  }
+</style>
+
+<div id="page-wrapper">
+  <div id="loadTT"></div>
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">PO Tracker</h4> </div>
+      <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+          <li><a href="#">Execution</a></li>
+          <li class="active">PO Tracker</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="white-box" style="border-radius: 12px">
+      <div class="div1" style="background:#ddd;border-radius: 12px">
+        <br />
+        <div class="col-sm-2" style="width : 105px;">
+          <h5><label style="color:red"> * </label><label>Select Client:</label></h5>
+        </div>
+        <div class="col-sm-3" style="padding:4px" id="scrollable-dropdown-menu">
+          <input style="cursor: pointer;" type="text" class="form-control" ng-model="clientModel" ng-style="clientStyle" style="width : 300px" uib-typeahead="clientDetails as clientDetails.client_name for clientDetails in clientList | filter:$viewValue" typeahead-on-select="changeClient()"
+            placeholder="Enter client name" />
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-2" style="width : 145px">
+          <h5><label style="color:red"> * </label><label>Select Proposal No:</label></h5>
+        </div>
+        <div class="col-sm-3" style="padding:4px" id="scrollable-dropdown-menu">
+          <input style="cursor: pointer;" type="text" class="form-control" ng-model="proposalModel" ng-style="proposalStyle" style="width : 300px" uib-typeahead="proposalDetails.proposal_number as proposalDetails.proposal_number for proposalDetails in proposalList | filter:$viewValue"
+            placeholder="Enter proposal no." ng-disabled="proposalDisabled" />
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-1" style="padding:1px">
+          <button style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 65px;height: 31px;" type="button" id="submitId" class="btn btn-success" ng-click="search()">Search</button>
+        </div>
+
+        <br /><br /><br />
+        <div class="col-sm-12">
+          <p style="color:red;">
+            <font size="1px">Note: If you are not able to see any client, please contact
+              <a href="">Support Team</a></font>
+          </p>
+        </div>
+      </div>
+      <br>
+
+      <div ng-show="table1">
+        <table class="table color-bordered-table info-bordered-table table-responsive table-hover">
+          <thead>
+            <tr>
+              <th>Proposal No</th>
+              <th>Proposal Name</th>
+              <th># of PO Order</th>
+              <th>Total PO Value USD</th>
+              <th>Total Amount Paid USD</th>
+              <th>Balance USD</th>
+              <th>Total Outsourced Budget US</th>
+              <th>Billing Entity</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="proposalTableDetails in proposalTableList">
+              <td style="text-align:right">{{proposalTableDetails.proposal_no}}</td>
+              <td style="text-align:left">{{proposalTableDetails.proposal_name}}</td>
+              <td style="text-align:right">{{proposalTableDetails.count_of_po}}</td>
+              <td style="text-align:right">{{proposalTableDetails.total_po_value}}</td>
+              <td style="text-align:right">{{proposalTableDetails.total_amount_paid}}</td>
+              <td style="text-align:right">{{proposalTableDetails.balance}}</td>
+              <td style="text-align:right">{{proposalTableDetails.total_outsourced_budget}}</td>
+              <td style="text-align:left">{{proposalTableDetails.billing_entity}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table id="display" ng-show="table2" class="table color-bordered-table info-bordered-table table-responsive">
+          <thead>
+            <tr>
+              <th>PO No</th>
+              <th>Generation Date</th>
+              <th>Vendor Name</th>
+              <th>Service</th>
+              <th style="width: 68px;">Billing Currency</th>
+              <th>PO Value(Billing Currency)</th>
+              <th>Total Paid Amount</th>
+              <th>Comments</th>
+              <th>Added/Modified By</th>
+              <th>Action Invoice</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr data-ng-repeat="poDetails in poList" ng-style="poDetails.cancelledRowStyle">
+              <td style="text-align:right" ng-style="poDetails.editRowStyle">
+                <div ng-model="poDetails.poNoModell">{{poDetails.PO_no}}</div>
+              </td>
+              <td style="text-align:center;" ng-style="poDetails.editRowStyle">
+                <div ng-model="poDetails.dateModell" style="width:73px">{{poDetails.generation_date}}</div>
+              </td>
+              <td style="text-align:left;" ng-style="poDetails.editRowStyle">
+                <div ng-model="poDetails.vendorModell">{{poDetails.vendor_name}}</div>
+              </td>
+              <td style="text-align:left" ng-style="poDetails.editRowStyle">
+                <div ng-hide="poDetails.serviceName">
+                  {{poDetails.service_name}}
+                </div>
+                <div ng-show="poDetails.serviceName">
+                  <select class="form-control" ng-model="poDetails.serviceModell" ng-style="poDetails.serviceStyle" ng-options="serviceDetails.Services_offered for serviceDetails in serviceList">
+                    <option value="">Please select</option>
+                  </select>
+                </div>
+              </td>
+              <td style="text-align:left" ng-style="poDetails.editRowStyle">
+                <div ng-model="poDetails.billingModell">{{poDetails.billing_currency}}</div>
+              </td>
+              <td style="text-align:right" ng-style="poDetails.editRowStyle">
+                <div ng-hide="poDetails.poValue">
+                  {{poDetails.po_value}}
+                </div>
+                <div ng-show="poDetails.poValue">
+                  <input type="text" id="phone" name="phone" onkeypress="phoneno()" maxlength="7" style="width:70px;border-radius:15px;" ng-model="poDetails.poValueModell" ng-style="poDetails.poValueStyle">
+                </div>
+              </td>
+              <td style="text-align:right" ng-style="poDetails.editRowStyle">
+                <div ng-model="poDetails.amountModell">{{poDetails.total_paid_amount}}</div>
+              </td>
+
+              <td ng-style="poDetails.editRowStyle">
+                <div ng-hide="poDetails.Comments" id="divID">
+                  <img src="../images/emptyComments.png" ng-if="poDetails.emptyComments" style="height:25px" title="{{poDetails.comments}}" ng-click = "onClickDisabledComment($index,'showCmntBox');" >
+                  <img src="../images/filledComments.png" ng-if="poDetails.filledComments" style="height:25px" title="{{poDetails.comments}}" ng-click = "onClickDisabledComment($index,'showCmntBox');">
+
+                  <div  id="addCommentsId" ng-show = "poDetails.cmntsStyle" class="addCommentClass">
+                    <span class="glyphicon glyphicon-remove pull-right" ng-click = "onClickDisabledComment($index,'hideCmntBox')"></span>
+                     <textarea  style="height: 52%; width: 100%; margin-top: 5%;" ng-model="poDetails.comments"></textarea>
+                     <button type="button " class="btn btn-primary commentSubmit">Submit</button>
+                  </div>
+                </div>
+
+                <div ng-show="poDetails.Comments">
+                  <img src="../images/emptyComments.png" ng-if="poDetails.emptyEditComments" style="height:25px" title="{{poDetails.commentsModell}}" ng-click = "onEditClickComment($index,'showEditCmntBox');" >
+                  <img src="../images/filledComments.png" ng-if="poDetails.filledEditComments" style="height:25px" title="{{poDetails.commentsModell}}" ng-click = "onEditClickComment($index,'showEditCmntBox');">
+
+                  <div ng-show = "poDetails.commentsEditStyle" class="addCommentClass">
+                    <span class="glyphicon glyphicon-remove pull-right" ng-click = "onEditClickComment($index,'hideEditCmntBox')"></span>
+                     <textarea  style="height: 52%; width: 100%; margin-top: 5%;" ng-model="poDetails.commentsModell"></textarea>
+                     <button type="button " class="btn btn-primary commentSubmit" ng-click = "onEditClickComment($index,'hideEditCmntBox')">Submit</button>
+                  </div>
+                </div>
+
+                <!-- <div ng-hide="poDetails.Comments">
+                  <input type="text" class="form-control" value="{{poDetails.comments}}" rel="tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="{{poDetails.comments}}" disabled />
+                </div> -->
+                <!-- <div ng-show="poDetails.Comments">
+                  <input type="text" class="form-control" ng-model="poDetails.commentsModell" />
+                </div> -->
+              </td>
+
+              <td style="text-align:left" ng-style="poDetails.editRowStyle" ng-model="poDetails.userModell">
+                {{poDetails.added_modified_user_name}}
+              </td>
+              <td style="text-align:center" ng-if="poDetails.actionsShow" ng-style="poDetails.editRowStyle">
+                <div>
+                  <a id="paidId" title="Paid Order" data-toggle="modal" data-target="#paidModal" ng-click="paid(poDetails)" style="cursor: pointer">P</a>&nbsp;&nbsp;
+
+                  <a id="editId" title="Edit" ng-click="edit($index)" style="cursor: pointer">E</a>&nbsp;&nbsp;
+
+                  <a id="cancelId" title="Cancel" ng-click="cancel(poDetails)" style="cursor: pointer">C</a>
+                </div>
+              </td>
+              <td ng-if="poDetails.cancelLabel" ng-style="poDetails.editRowStyle">
+                <label>Cancelled<label>
+              </td>
+
+              <td ng-style="poDetails.editRowStyle"></td>
+            </tr>
+
+            <tr ng-repeat="addPODataDetails in addPODataList">
+              <td></td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" style="cursor: pointer;" uib-datepicker-popup="dd MMM yyyy"
+                  ng-model="addPODataDetails.dateModel" ng-click="opened = !!! opened" is-open="opened" placeholder="Date"
+                  datepicker-options="add_options"  readonly="true" ng-style="addPODataDetails.dateStyle"/>
+                </div>
+              </td>
+              <td>
+                <div id="scrollable-dropdown-menu">
+                  <input class="form-control" style="height:26px; width: 100px; border-radius:15px ; cursor: pointer;"
+                  ng-model="addPODataDetails.vendorModel" ng-style="addPODataDetails.vendorStyle" placeholder="Enter vendor name"
+                  uib-typeahead="vendorDetails as vendorDetails.vendor_name for vendorDetails in vendorList  | filter:$viewValue">
+                </div>
+              </td>
+
+              <td>
+                <select class="form-control" style="cursor: pointer; width: 110px"
+                ng-model="addPODataDetails.serviceModel" ng-style="addPODataDetails.serviceStyle"
+                ng-options="serviceDetails as serviceDetails.Services_offered for serviceDetails in serviceList">
+                    <option value="">Please select</option>
+                  </select>
+              </td>
+              <td>
+                <select class="form-control" style="cursor: pointer;width: 110px"
+                ng-model="addPODataDetails.currencyModel" ng-style="addPODataDetails.currencyStyle"
+                ng-options="currencyDetails as currencyDetails.currency for currencyDetails in currencyList">
+                    <option value="">Please select</option>
+                  </select>
+              </td>
+              <td><input type="text" id="phone" name="phone" onkeypress="phoneno()" maxlength="7" placeholder="0.00"
+                style="cursor: pointer;width:50px;border-radius:15px;text-align:right" ng-model="addPODataDetails.billingModel" ng-style="addPODataDetails.billingCurrencyStyle"
+                />
+              </td>
+              <td></td>
+
+              <td>
+                <img src="../images/emptyComments.png" ng-if="addPODataDetails.emptyAddComments" style="height:25px" title="{{addPODataDetails.commentsModel}}" ng-click = "onClickAddComment($index,'showAddCmntBox');" >
+                <img src="../images/filledComments.png" ng-if="addPODataDetails.filledAddComments" style="height:25px" title="{{addPODataDetails.commentsModel}}" ng-click = "onClickAddComment($index,'showAddCmntBox');">
+
+                <div  id="addCommentsId" ng-show = "addPODataDetails.commentsStyle" class="addCommentClass">
+                  <span class="glyphicon glyphicon-remove pull-right" ng-click = "onClickAddComment($index,'hideAddCmntBox')"></span>
+                   <textarea  style="height: 52%; width: 100%; margin-top: 5%;" ng-model="addPODataDetails.commentsModel" ></textarea>
+                   <button type="button" class="btn btn-primary commentSubmit" ng-click = "onClickAddComment($index,'hideAddCmntBox')">Submit</button>
+                </div>
+
+                <!-- <input type="text" class="form-control" style="width:114px;border-radius:15px;"
+                ng-model="addPODataDetails.commentsModel" placeholder="Enter comments" /> -->
+              </td>
+
+              <td style="text-align:left">{{addPODataListUserName}}</td>
+              <td></td>
+
+              <td>
+                <i class="fa fa-trash-o" style="cursor: pointer;font-size:20px" aria-hidden="true" ng-click="removePO()"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <center>
+          <button style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 65px;height: 31px;" type="button"
+          class="btn btn-success" ng-click="addPO()">Add PO</button>
+
+          <button id="addModifyId" style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 130px;height: 31px;"
+           type="button" class="btn btn-success" data-toggle="modal" data-target="#addVendorModal"
+          ng-click="addModifyVendorOnload($index , 'addVendorTabClick')">Add/Modify Vendor</button>
+
+          <button style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 63px;height: 31px;" type="button"
+          class="btn btn-success" ng-click="finalSubmit()">Submit</button>
+
+          <img style="cursor: pointer;" src="images/excel.png" title="Excel download" alt="Excel Download" ng-click="exportExcel();" width="30" height="30">
+        </center>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="modal fade" id="paidModal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #8c9bcf;color: black;">
+              <button type="button" data-dismiss="modal" ng-click="refresh()" class="close">&times;</button>
+              <h4 class="modal-title"><b>PO NO - {{PO_no}} </h4>
+            </div>
+            <div class="white-box" style="padding:30px">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h5><label>Proposal Number:</label></h5>
+      </div>
+      <div class="col-sm-2">
+        <h5><label>{{PO_no}}</label></h5>
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+        <h5><label>Generation Date:</label></h5>
+      </div>
+      <div class="col-sm-2">
+        <h5><label>{{generation_date | date : "dd MMM yyyy"}}</label></h5>
+      </div>
+
+      <div class="col-sm-3">
+        <h5><label>PO Value({{billing_currency}}):</label></h5>
+      </div>
+      <div class="col-sm-2">
+        <h5><label>{{po_value}}</label></h5>
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+        <h5><label>Balance({{billing_currency}}):</label></h5>
+      </div>
+      <div class="col-sm-2">
+        <h5><label>{{balance}}</label></h5>
+      </div>
+
+      <div class="col-sm-3">
+        <h5><label>Amount({{billing_currency}}):</label></h5>
+      </div>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" style="height: 28px;width:128px;border-radius:15px;" placeholder="0.00" ng-model="amount" ng-style="amountStyle" />
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-3">
+        <h5><label>Payment Date:</label></h5>
+      </div>
+
+      <div class="col-sm-2">
+        <input type="text" class="form-control" style="cursor: pointer;" uib-datepicker-popup="dd MMM yyyy" ng-model="todays_Date" ng-click="opened1 = !!! opened1" is-open="opened1" placeholder="Date" datepicker-options="min_max_options" readonly="true" ng-style="todays_Date_Style"
+        />
+      </div>
+
+      <div class="col-sm-3">
+        <h5><label>Vendor PO:</label></h5>
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" style="height: 28px;width:128px;border-radius:15px;" maxlength="10" ng-model="vendor_PO" />
+      </div>
+
+      <div class="col-sm-12"></div>
+
+      <div class="col-sm-3">
+        <h5><label>Comments:</label></h5>
+      </div>
+      <div class="col-sm-5">
+        <textarea class="form-control" style="height: 75px;width:280px;border-radius:15px;" ng-model="comments" rows="2"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer" style="background-color: Azure">
+  <center>
+    <button type="button" style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 63px;height: 31px;" class="btn btn-success" ng-click="paidSubmit()">Submit</button>
+  </center>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="addVendorModal" tabindex="-1" aria-hidden="true" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #8c9bcf;color: black;">
+        <button type="button" class="close" data-dismiss="modal" ng-click="refresh()">&times;</button>
+        <h4 class="modal-title"><b>Add / Modify Vendor</b></h4>
+      </div>
+
+      <div class="modal-body">
+        <div role="tabpanel">
+
+          <!-- Nav tabs -->
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active" ng-class="activeClass">
+              <a href data-target="#addVendorTab" aria-controls="addVendorTab" role="tab" ng-click="addVendorTabClick()" data-toggle="tab">Add
+                </a>
+            </li>
+            <li role="presentation">
+              <a href data-target="#modifyVendorTab" aria-controls="modifyVendorTab" role="tab" ng-click="modifyVendorTabClick()" data-toggle="tab">Modify
+                  </a>
+            </li>
+          </ul>
+
+          <br><br>
+
+          <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="addVendorTab">
+              <div class="col-sm-2">
+                <h5><label style="color:red"> * </label><label>Vendor Name:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" ng-model="addVendorNameModel" ng-style="addVendorNameStyle" maxlength="50" />
+              </div>
+
+              <br><br>
+
+              <div class="col-sm-2">
+                <h5><label>Address:</label></h5>
+              </div>
+              <div class="col-sm-4" style="padding:4px">
+                <textarea class="form-control" style="height: 45px;width:400px;border-radius:15px" maxlength="120" rows="2" ng-model="addVendorAddressModel">
+                  </textarea>
+              </div>
+
+              <br><br><br>
+
+              <div class="col-sm-2">
+                <h5><label>City:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" ng-model="addVendorCityModel" />
+              </div>
+
+              <div class="col-sm-2"></div>
+
+              <div class="col-sm-2">
+                <h5><label>Country:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <select class="form-control" ng-model="addVendorCountryModel" ng-options="addVendorCountryDetails as addVendorCountryDetails.country_name for addVendorCountryDetails in addModifyCountryList">
+                  <option value="">Please select</option>
+                  </select>
+              </div>
+
+              <br><br>
+
+              <div class="col-sm-2">
+                <h5><label>Phone:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="addVendorPhoneModel" />
+              </div>
+
+              <div class="col-sm-2"></div>
+
+              <div class="col-sm-2">
+                <h5><label>Email:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" ng-model="addVendorEmailModel" ng-style="addVendorEmailStyle" ng-click="emailClick()" />
+              </div>
+
+              <br><br><br><br>
+
+              <center>
+                <button type="button" style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 63px;height: 31px;" class="btn btn-success" ng-click="addVendorSubmit()">Submit</button>
+              </center>
+            </div>
+
+
+            <div role="tabpanel" class="tab-pane" id="modifyVendorTab">
+              <div class="col-sm-2">
+                <h5><label style="color:red"> * </label><label>Vendor Name:</label></h5>
+              </div>
+              <div class="col-sm-3" id="scrollable-dropdown-menu" style="padding:4px">
+                <input class="form-control" ng-model="modifyVendorNameModel" ng-style="modifyVendorNameStyle" maxlength="30" typeahead-on-select="modifyChange(modifyVendorNameModel)" style="height: 25px;;border-radius:23px" placeholder="Enter vendor name" uib-typeahead="addModifyVendorDetails as addModifyVendorDetails.vendor_name for addModifyVendorDetails in addModifyVendorList | filter:$viewValue">
+
+              </div>
+
+              <br><br>
+
+              <div class="col-sm-2">
+                <h5><label>Address:</label></h5>
+              </div>
+              <div class="col-sm-4" style="padding:4px">
+                <textarea class="form-control" style="height: 45px;width:400px;border-radius:15px" maxlength="120" rows="2" ng-model="modifyVendorAddressModel">
+                 </textarea>
+              </div>
+
+              <br><br><br>
+
+              <div class="col-sm-2">
+                <h5><label>City:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" ng-model="modifyVendorCityModel" />
+              </div>
+
+              <div class="col-sm-2"></div>
+
+              <div class="col-sm-2">
+                <h5><label>Country:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <select class="form-control" ng-model="modifyVendorCountryModel" ng-options="addModifyCountryDetails as
+                addModifyCountryDetails.country_name for addModifyCountryDetails in addModifyCountryList">{{modifyVendorCountryModel}}
+                    <option value="">Please select</option>
+                  </select>
+              </div>
+
+              <br><br>
+
+              <div class="col-sm-2">
+                <h5><label>Phone:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="modifyVendorPhoneModel" />
+              </div>
+
+              <div class="col-sm-2"></div>
+
+              <div class="col-sm-2">
+                <h5><label>Email:</label></h5>
+              </div>
+              <div class="col-sm-3" style="padding:4px">
+                <input type="text" class="form-control" ng-model="modifyVendorEmailModel" ng-style="modifyVendorEmailStyle" />
+              </div>
+
+              <br><br><br><br>
+
+              <center>
+                <button type="button" style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 63px;height: 31px;" class="btn btn-success" ng-click="modifyVendorUpdate()">Update</button>
+              </center>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    "use strict";
+    var e = $("body");
+    $(function() {
+        $(".preloader").fadeOut(), $("#side-menu").metisMenu()
+      }), $(".right-side-toggle").on("click", function() {
+        $(".right-sidebar").slideDown(50).toggleClass("shw-rside"), $(".fxhdr").on("click", function() {
+          e.toggleClass("fix-header")
+        }), $(".fxsdr").on("click", function() {
+          e.toggleClass("fix-sidebar")
+        });
+        var i = $(".fxhdr");
+        e.hasClass("fix-header") ? i.attr("checked", !0) : i.attr("checked", !1), e.hasClass("fix-sidebar") ? i.attr("checked", !0) : i.attr("checked", !1)
+      }), $(function() {
+        var i = function() {
+            var i = 60,
+              s = window.innerWidth > 0 ? window.innerWidth : this.screen.width,
+              l = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
+            768 > s ? ($("div.navbar-collapse").addClass("collapse"), i = 100) : $("div.navbar-collapse").removeClass("collapse"), 1170 > s ? (e.addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(
+              ".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $(".logo span").hide()) : (e.removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(
+              ".logo span").show()), l -= i, 1 > l && (l = 1), l > i && $("#page-wrapper").css("min-height", l + "px")
+          },
+          s = window.location,
+          l = $("ul.nav a").filter(function() {
+            return this.href === s || 0 === s.href.indexOf(this.href)
+          }).addClass("active").parent().parent().addClass("in").parent();
+        l.is("li") && l.addClass("active"), $(window).ready(i), $(window).on("resize", i)
+      })
+      /*, $(".open-close").on("click", function() {
+              $("body").hasClass("content-wrapper") ? ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"), $("body").removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(".logo span").show()) : ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $("body").addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(".logo span").hide())
+            })*/
+      ,
+      function(e, i, s) {
+        var l = '[data-perform="panel-collapse"]',
+          o = '[data-perform="panel-dismiss"]';
+        e(l).each(function() {
+          var i = {
+              toggle: !1
+            },
+            s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper"),
+            o = e(this).children("i");
+          l.length || (l = s.children(".panel-heading").nextAll().wrapAll("<div/>").parent().addClass("panel-wrapper"), i = {}), l.collapse(i).on("hide.bs.collapse", function() {
+            o.removeClass("ti-minus").addClass("ti-plus")
+          }).on("show.bs.collapse", function() {
+            o.removeClass("ti-plus").addClass("ti-minus")
+          })
+        }), e(s).on("click", l, function(i) {
+          i.preventDefault();
+          var s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper");
+          l.collapse("toggle")
+        }), e(s).on("click", o, function(i) {
+          function l() {
+            var i = s.parent();
+            s.remove(), i.filter(function() {
+              return e(this).is('[class*="col-"]') && 0 === e(this).children("*").length
+            }).remove()
+          }
+          i.preventDefault();
+          var s = e(this).closest(".panel");
+          l()
+        })
+      }(jQuery, window, document), $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+      }), $(function() {
+        $('[data-toggle="popover"]').popover()
+      }), $(".list-task li label").on("click", function() {
+        $(this).toggleClass("task-done")
+      }), $(".settings_box a").on("click", function() {
+        $("ul.theme_color").toggleClass("theme_block")
+      }), $(".collapseble").on("click", function() {
+        $(".collapseblebox").fadeToggle(350)
+      }), $(".slimscrollright").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".slimscrollsidebar").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".chat-list").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), e.trigger("resize"), $(".visited li a").on("click", function(e) {
+        $(".visited li").removeClass("active");
+        var i = $(this).parent();
+        i.hasClass("active") || i.addClass("active"), e.preventDefault()
+      }), $("#to-recover").on("click", function() {
+        $("#loginform").slideUp(), $("#recoverform").fadeIn()
+      }), $(".navbar-toggle").on("click", function() {
+        $(".navbar-toggle i").toggleClass("ti-menu").addClass("ti-close")
+      })
+  });
+</script>

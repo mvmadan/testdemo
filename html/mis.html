@@ -1,0 +1,578 @@
+<style>
+  rect{
+    fill: none;
+    pointer-events: all;
+  }
+  line{
+    stroke: #ccc;
+    stroke-width: 1.5px;
+  }
+  #parent-color-gradient{
+    height: 20px;
+    width: 100px;
+    float: right;
+    margin-bottom: 2px;
+    padding: 0px 10px;
+  }
+  #color-gradient{
+    height: 10px;
+    width: 100%;
+    position: relative;
+    background: -webkit-linear-gradient(left, #40664D, #FFCC00, #990000); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, #40664D, #FFCC00, #990000); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, #40664D, #FFCC00, #990000); /* For Fx 3.6 to 15 */
+    background: linear-gradient(to right, #40664D, #FFCC00, #990000); /* Standard syntax (must be last) */
+  }
+  .container{
+    border : solid 2px #e5e8e8;
+    background : #f1f1f1;
+    /*overflow: hidden;*/
+    /*height : 114%;*/
+  }
+  .panel-info>.panel-heading {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding : 19px 9px;
+    text-transform: none;
+    line-height: 0.428571;
+    font-size: 18px;
+    font-weight : 400;
+  }
+  .panel-heading {
+    border-bottom : solid 2px #9bc8de;
+    border-top-left-radius : 3px;
+    border-top-right-radius : 3px;
+    height : 20px !important;
+    border-radius : 0px 0px 7px 7px !important;
+    font-family :  sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .white-boxContainer {
+    background : #fff;
+    padding : 0px;
+    margin :0px 5px 0px 5px;
+    height : 231px;
+    width : 32%
+  }
+  .white-boxContainerComplexityVsExe {
+    background : #fff;
+    padding : 0px;
+    margin :0px 0px 0px 0px;
+    height : 231px;
+  }
+  .white-boxContainerBillableTask {
+    background : #fff;
+    padding : 0px;
+    margin :0px 0px 0px 0px;
+    height : 231px;
+  }
+  .donut-inner {
+    text-align: center;
+  }
+  .donut-inner h5 {
+    margin-bottom: -4px;
+    margin-top: -107px;
+    font-size: 18px;
+    font-weight: initial;
+    box-sizing: border-box;
+    padding-left: 6px
+  }
+  .donut-inner span {
+   font-size: 12px;
+   display: inline-block;
+   box-sizing: border-box;
+  }
+   h6 {
+    color: #2b2b2b;
+    font-family: Roboto,sans-serif;
+    margin: 04px 0px 04px 00px !important;
+    font-weight: 300;
+  }
+  .rnrScroll{
+    height: 43px;
+    padding-top: 2px;
+    padding-left: 5px;
+    width: 204px !important;
+    border: solid 2px rgba(131, 184, 210, 0.83);
+    border-radius: 21px;
+    margin-top: 6px;
+    margin-left: 19px;
+  }
+  .rnrStarParent{
+    display: inline-block;
+    width: 50px;
+    padding-top: 4px;
+  }
+  .starSpan{
+    display: inline-block;
+    padding: 0px 5px 0px 7px;
+  }
+  .starTextSpan{
+    display: inline-block;
+    font-size: 10px;
+    padding-left: 0px
+  }
+  .chart-container {
+    position: relative;
+    }
+  chart-legend {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+  }
+  hr{
+    margin-top: -12px;
+    margin-bottom: 6px;
+    border: 0;
+    border-top: 2px solid #d5dbde;
+  }
+  .paddingLeftRight{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  .parentContainerStyle{
+    padding:7px 0px 7px 0px !important;
+    margin-left:7px;
+  }
+
+  tooltip._bottom:not(._left):not(._right) tip tip-arrow {
+    border-bottom: 6px solid rgba(105, 165, 208, 0.85);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    bottom: 100%;
+    content: '';
+    height: 0;
+    left: 50%;
+    margin-left: -6px;
+    position: absolute;
+    width: 0;
+  }
+  .excelStyle{
+    display: inline-block;
+    margin-top: 6px !important;
+    color: green;
+  }
+
+</style>
+
+
+<div id="loadTT"></div>
+<div id="page-wrapper" ng-if="hideMyPage">
+<div class="row bg-title">
+  <h4 class="page-title" style="margin-top: 0px; margin-left: 33px;display:inline-block">MIS</h4>
+  <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12" style="float:right;padding-right:2%">
+    <ol class="breadcrumb">
+      <li><a href="#!/mis">Reports</a></li>
+      <li class="active">MIS</li>
+    </ol>
+  </div>
+</div>
+<div>
+  <div class="col-sm-12 container">
+    <div class="col-sm-12 parentContainerStyle">
+      <div class="col-md-5 white-boxContainer" style="height:57px; width:45%; margin-right : 12px ;border-radius: 13px 10px 10px 10px;padding:3px;"  >
+        <div class="col-md-4" style="height:42px;padding-top:2px;padding-left:24px;">
+          <span style="font-size: 18px;font-weight: 100;display: block;">Target Hrs</span>
+          <span style="margin-left:2px; font-size:16px">{{targetHours}}</span>
+        </div>
+        <div class="col-md-4" style="height:42px;padding-top:2px;padding-left:24px;border-left:solid 2px #69cff4">
+          <span style="font-size: 18px;font-weight: 100;display: block;">Current Rate</span>
+          <span style="margin-left:2px; font-size:16px">{{currentRate}}</span>
+        </div>
+        <div class="col-md-4" style="height:42px;padding-top:2px;padding-left:24px;border-left:solid 2px #69cff4">
+          <span style="font-size: 18px;font-weight: 100;display: block;">Required Rate</span>
+          <span style="margin-left:2px; font-size:16px">{{requireRate}}</span>
+        </div>
+      </div>
+      <div class="col-md-2 white-boxContainer" style="height:57px; margin-right : 12px;border-radius: 13px 10px 10px 10px;width:27%;">
+        <div class="col-md-2" style="height:42px;padding-top:2px;padding-left:6px;">
+          <span style="font-size: 18px;font-weight: 100;display: block; padding-top:3px">RnR</span>
+          <span style="margin-left:2px; font-size:16px">{{rnrData.Rnr_Year}}</span>
+        </div>
+        <div class="col-md-10 rnrScroll"  >
+          <div class="col-sm-1" style="padding-top: 10px;">
+            <a href ><i class="fa fa-chevron-left" aria-hidden="true" ng-click ="leftlist()" ></i></a>
+          </div>
+            <div class="col-sm-2 rnrStarParent" ng-style="rnrList[0].highlightStyle">
+              <span class="starSpan"><i class="fa fa-star" aria-hidden="true" ng-style="{color:rnrList[0].color_code}"></i></span>
+              <span class="starTextSpan" ng-style="{ 'color' : rnrList[0].highlightColor  }" >{{month1}}</span>
+            </div>
+            <div class="col-sm-2 rnrStarParent" ng-style="rnrList[1].highlightStyle" >
+              <span class="starSpan"><i class="fa fa-star" aria-hidden="true" ng-style="{color:rnrList[1].color_code}"></i></span>
+              <span class="starTextSpan" ng-style="{ 'color' : rnrList[1].highlightColor}">{{month2}}</span>
+            </div>
+            <div class="col-sm-2 rnrStarParent" ng-style="rnrList[2].highlightStyle">
+              <span class="starSpan"><i class="fa fa-star" aria-hidden="true" ng-style="{color:rnrList[2].color_code}"></i></span>
+              <span class="starTextSpan" ng-style="{  'color' : rnrList[2].highlightColor}">{{month3}}</span>
+            </div>
+          <div class="col-sm-1" style="padding-top: 10px;    padding-left: 0px;">
+            <a href ng-click = "rightList();"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 white-boxContainer" style="height:57px; width:9%; margin-right : 12px;border-radius: 13px 10px 10px 10px;">
+        <div class="col-md-12" style="height:42px;padding-top:2px;padding-left:2px;">
+          <span style="font-size: 18px;font-weight: 100;display: inline-block;padding-left:12px ;padding-top:3px;margin-bottom:-4px">Leaves <i class="fa fa-info-circle" aria-hidden="true" style="font-size : 12px; vertical-align : middle;"  tooltips tooltip-template="{{leaves.tooltip}}" tooltip-side="bottom"></i></span>
+          <span style="display:block;padding-left:8px">
+            <span style="padding-left: 5px;">
+              <span style="font-size:20px; border-right: solid 2px #9ca597;padding-right: 10px; color:#4fde4f">{{leaves.scheduled_leaves}}</span>
+              <span style="font-size:20px;padding-left:5px;line-height: 0; color:#e62d2d">{{leaves.unscheduled_leaves}}</span>
+            </span>
+          </span>
+
+        </div>
+      </div>
+      <div class="col-md-2 white-boxContainer" style="height:57px; width:11%; margin-right : 3px ;border-radius: 13px 10px 10px 10px;"  >
+        <div class="col-md-12" style="height:42px;padding-top:2px;padding-left:2px;">
+          <span style="font-size: 18px;font-weight: 100;display: block;padding-left:6px; padding-top:3px">Date</span>
+          <span style="margin-left:6px;color:#54cae6; font-size:16px">{{currentDate}}</span>
+        </div>
+      </div>
+    </div>
+    <h3 class="nino-sectionTitle" style="display:inline-block">Monthly Trend </h3>
+    <i class="fa fa-file-excel-o fa-2x pull-right excelStyle" ng-click = "excelExport()" ></i>
+    <hr/>
+    <div class="col-sm-12" style="margin-bottom:8px">
+      <div class="col-md-4 white-boxContainer">
+        <div class="panel  panel-info">
+				 <div class="panel-heading">Billable</div>
+				</div>
+        <div class="col-sm-5" style="height : 73%">
+          <canvas id = "doughnut" class = "chart chart-doughnut" chart-data = "utilizationData" chart-labels = "utilizationLabels" chart-colors="utilizationColor" chart-options="utilizationOptions" style="margin-bottom : 0px; margin-top : 0px"></canvas>
+          <div class="donut-inner">
+            <h5>{{percentageBillableUtilizationThisMonth}}</h5>
+            <h6>{{billableUtilizationThisMonth}}</h6>
+            <span >{{currentMonth}}</span>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div id = "billableLastMontId" class="col-sm-6" style="height : 73%; border-left: solid 2px #cdd8d8; border-right: solid 2px #cdd8d8; padding-left : 0px; padding-right : 0px">
+            <div class="col-sm-12" style=" height: 50%; width: 100%; padding-right: 0px !important; padding-left: 0px !important; border-bottom: solid 2px #cdd8d8;">
+              <span style="padding: 17px 0px 0px 18px; ; display : inline-block; font-weight: bold; font-size: 24px;">
+                {{percentageBillableHoursLastMonth}}
+              </span>
+              <span style="padding-left:18px !important;">{{lastMonth}}</span>
+            </div>
+            <div class="col-sm-12" style=" height: 50%; width: 100%; padding-right: 0px !important; padding-left: 0px !important; ">
+              <span style="padding: 18px 5px 0px 19px;; display : inline-block;font-weight: bold; font-size: 24px;">
+                {{yesterdayBillableUtilization}}
+              </span>
+              <span style="padding-left:14px !important;display:block">{{previousDay}}</span>
+            </div>
+          </div>
+          <div class="col-sm-6" style="height : 73%;  padding-left : 0px; padding-right : 0px">
+            <div class="col-sm-12" style=" height: 50%; width: 100%; padding-right: 0px !important; padding-left: 0px !important; border-bottom: solid 2px #cdd8d8;">
+              <span style="padding: 17px 0px 0px 23px; display : inline-block; font-weight: bold; font-size: 24px;">
+                {{percentageBillableHoursYTD}}
+              </span>
+              <span style="padding-left:18px !important; display:inline-block">{{ytdYear}}</span>
+            </div>
+            <div class="col-sm-12" style=" height: 50%; width: 100%; padding-right: 0px !important; padding-left: 0px !important; ">
+              <div class="col-sm-12" style=" height: 50%; width: 100%; padding-right: 0px !important; padding-left: 0px !important; border-bottom: solid 2px #cdd8d8;">
+                <span style="display: inline-block; padding-top: 12px;">
+                  <span style="font-size : 10px;padding-left: 3px !important;">Billable</span>
+                  <span style="font-weight:bold;font-size: 11px;">{{billableUtilization}}</span>
+                </span>
+              </div>
+              <div class="col-sm-12" style=" height: 50%; width: 100%; padding-right: 0px !important; padding-left: 0px !important; ">
+                <span style="padding: 15px 0px 18px 2px; display : inline-block">
+                  <span style="display: inline-block;">
+                    <span style="font-size : 10px;padding-left: 2px !important;">Non-Billable</span>
+                    <span style="font-weight:bold;font-size: 11px;">{{nonBillableUtilization}}</span>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4 white-boxContainer">
+        <div class="panel  panel-info">
+         <div class="panel-heading">Error Count</div>
+        </div>
+        <div class="col-sm-5" style="height : 73%">
+          <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="errorData" chart-labels="errorLabel" chart-colors="errorChartColor" chart-options="errorChartOptions" style="margin-bottom : 0px; margin-top : 0px">
+          </canvas>
+          <div class="donut-inner">
+              <h5 style="margin-bottom:2px !important;padding-left:initial"> {{errorsData.Total_Errors_For_This_Month}}</h5>
+              <span>{{currentMonth}}</span>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="col-sm-12" style="height : 73%; border-left: solid 2px #cdd8d8; padding : 0px 0px 0px 0px">
+            <div class="col-sm-12" style =" border-bottom: solid 2px #cdd8d8; padding : 8px 0px 0px 0px; height:50%" >
+              <div style="col-sm-12" >
+                <span style="line-height: 2.428571; padding-left : 21px" >
+                  <span >Internal</span>
+                  <span style="font-weight:bold; direction:rtl; float: right; margin-right: 38px; " ng-style = "{color :errorsData.thisMonthInternalColor }">{{errorsData.INTernal_Errors_For_This_Month}}</span>
+                </span>
+              </div>
+              <div style="col-sm-12" >
+                <span style="line-height: 2.428571; padding-left : 21px" >
+                  <span >External</span>
+                  <span style="font-weight:bold ; direction:rtl; float: right; margin-right: 38px;" ng-style = "{color :errorsData.thisMonthExternalColor }">{{errorsData.External_Errors_For_This_Month}}</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12" style =" border-bottom: solid 2px #cdd8d8; padding : 4px 0px 0px 0px; height:25%" >
+              <div style="col-sm-12" >
+                <span style="line-height: 2.428571; padding-left : 21px" >
+                  <span >{{lastMonth}}</span>
+                  <span style="font-weight:bold;direction:rtl; float: right; margin-right: 38px;" ng-style = "{color :errorsData.thisMonthInternalColor }">{{errorsData.Total_Errors_previous_month}}</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12" style ="padding : 4px 0px 0px 0px; height:25%" >
+              <div style="col-sm-12" >
+                <span style="line-height: 2.428571; padding-left : 21px" >
+                  <span >{{ytdYear}}</span>
+                  <span style="font-weight:bold;direction:rtl;direction:rtl; float: right; margin-right: 38px;"  ng-style = "{color :errorsData.ytdErrorColor }">{{errorsData.Total_Errors_YTD}}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 white-boxContainer">
+        <div class="panel  panel-info" style="margin-bottom : 5px">
+         <div class="panel-heading"  >Differentiators</div>
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-12" >
+            <span style="line-height: 2.428571; padding-left : 21px" >
+
+              <span style="font-weight:bold;direction:rtl;width: 171px;display: inline-block;border-right: solid 2px #cdd8d8;padding-right: 10px;height:0px">{{currentMonth}}</span>
+              <span style="font-weight:bold;direction:rtl;padding-left:20px">{{ytdYear}}</span>
+            </span>
+          </div>
+          <div class="col-sm-12" style =" border-top: solid 2px #cdd8d8;">
+            <span style="line-height: 2.428571; padding-left : 21px" >
+              <span >Satisfaction</span>
+              <span style="font-weight:bold;direction:rtl;width: 93px;display: inline-block;border-right: solid 2px #cdd8d8;padding-right: 32px;" ng-style = "{color :differentitatorsDataSatisfaction.thisMonthSatisfactionColor }">{{differentitatorsDataSatisfaction.This_Month}}</span>
+              <span style="font-weight:bold;direction:rtl;padding-left:44px" ng-style = "{color :differentitatorsDataSatisfaction.thisYearStisfactionColor }" >{{differentitatorsDataSatisfaction.This_Year}}</span>
+            </span>
+          </div>
+          <div class="col-sm-12" style =" border-top: solid 2px #cdd8d8;">
+            <span style="line-height: 2.428571; padding-left : 21px" >
+              <span >Escalations</span>
+              <span style="font-weight:bold;direction:rtl;width: 96px;display: inline-block;border-right: solid 2px #cdd8d8;padding-right: 32px;"
+              ng-style = "{color :differentitatorsDataEscalations.esclationColorMonth }" >{{differentitatorsDataEscalations.This_Month}}</span>
+              <span style="font-weight:bold;direction:rtl;padding-left:44px" ng-style = "{color :differentitatorsDataEscalations.esclationColorYear }">{{differentitatorsDataEscalations.This_Year}}</span>
+            </span>
+          </div>
+          <div class="col-sm-12" style =" border-top: solid 2px #cdd8d8;">
+            <span style="line-height: 2.428571; padding-left : 21px" >
+              <span >Delays</span>
+              <span style="font-weight:bold;direction:rtl;width: 126px;display: inline-block;border-right: solid 2px #cdd8d8;padding-right: 32px;" ng-style = "{color :differentitatorsDataDelays.delayColorMonth }">{{differentitatorsDataDelays.This_Month}}</span>
+              <span style="font-weight:bold;direction:rtl;padding-left:44px" ng-style = "{color :differentitatorsDataDelays.delayColorYear }">{{differentitatorsDataDelays.This_Year}}</span>
+            </span>
+          </div>
+          <div class="col-sm-12" style =" border-top: solid 2px #cdd8d8;">
+            <span style="line-height: 2.428571; padding-left : 21px" >
+              <span >Default</span>
+              <span style="font-weight:bold;direction:rtl;width: 123px;display: inline-block;border-right: solid 2px #cdd8d8;padding-right: 32px;" ng-style = "{color :differentitatorsDataDefault.defaultColorMonth }">{{differentitatorsDataDefault.This_Month}}</span>
+              <span style="font-weight:bold;direction:rtl;padding-left:44px" ng-style = "{color :differentitatorsDataDefault.defaultColorYear }">{{differentitatorsDataDefault.This_Year}}</span>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+      <div>
+        <h3 class="nino-sectionTitle">Other Parameters ({{ytdYear}}) </h3>
+        <hr/>
+      </div>
+      <div class="col-sm-12" >
+        <div class="col-sm-4 paddingLeftRight" style="width:32%">
+          <div class="white-boxContainerComplexityVsExe">
+            <div class="panel  panel-info">
+             <div class="panel-heading" >Complexity Vs Execution</div>
+            </div>
+            <div class="col-sm-12" style="position: relative;" ng-if=!showComplexityVSExecution>
+              <canvas id="pie" class="chart chart-pie"
+                chart-data="complexityChartData"  chart-labels="complexityChartLabel" chart-options="complexityChartOptions" chart-colors = "complexityChartColor" style="margin-bottom : 0px; margin-top : 0px">
+              </canvas>
+            </div>
+            <div class="col-sm-12" style="position: relative;" ng-if=showComplexityVSExecution>
+              <img src="../images/No_Data_Small.png" style="height:155px">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3 paddingLeftRight" style="width:28%" >
+          <div class="white-boxContainerComplexityVsExe">
+            <div class="panel  panel-info">
+             <div class="panel-heading" >Adhoc Vs Tracker</div>
+            </div>
+            <div class="col-sm-12" ng-if = !showAdhocVsTracker>
+              <canvas id="pie" class="chart chart-pie"
+                chart-data="adhocVsTrackerChartData"  chart-labels="adhocVsTrackerLabel" chart-options="adhocVsTrackerOptions"  chart-colors = "adhocVsTrackerColor" style="margin-bottom : 0px; margin-top : 0px">
+              </canvas>
+            </div>
+            <!--if data is not available-->
+            <div class="col-sm-12" ng-if = showAdhocVsTracker>
+              <img src="../images/No_Data_Small.png" style="height:155px">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-5 paddingLeftRight" style="width:39%">
+          <div class="white-boxContainerBillableTask">
+            <div class="panel  panel-info">
+             <div class="panel-heading"  >Time Spent on Billable Tasks</div>
+            </div>
+            <div class="col-sm-12" ng-if = !showTimeSpentOnbillTask>
+              <canvas id="pie" class="chart chart-pie"
+                chart-data = "timeSpentOnTaskShowData" chart-labels = "timeSpentOnTaskShowLabel" chart-options = "timeSpentChartOptions" style="margin-bottom : 0px; margin-top : 0px" chart-labels="labels" chart-colors = "timeSpentChartColor" >
+              </canvas>
+            </div>
+            <div class="col-sm-12" ng-if = showTimeSpentOnbillTask>
+              <img src="../images/No_Data_Small.png" style="height:155px;margin-left:20%">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+<!--
+<script type="text/javascript">
+  $(document).ready(function() {
+    "use strict";
+    var e = $("body");
+    $(function() {
+        $(".preloader").fadeOut(), $("#side-menu").metisMenu()
+      }), $(".right-side-toggle").on("click", function() {
+        $(".right-sidebar").slideDown(50).toggleClass("shw-rside"), $(".fxhdr").on("click", function() {
+          e.toggleClass("fix-header")
+        }), $(".fxsdr").on("click", function() {
+          e.toggleClass("fix-sidebar")
+        });
+        var i = $(".fxhdr");
+        e.hasClass("fix-header") ? i.attr("checked", !0) : i.attr("checked", !1), e.hasClass("fix-sidebar") ? i.attr("checked", !0) : i.attr("checked", !1)
+      }), $(function() {
+        var i = function() {
+            var i = 60,
+              s = window.innerWidth > 0 ? window.innerWidth : this.screen.width,
+              l = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
+            768 > s ? ($("div.navbar-collapse").addClass("collapse"), i = 100) : $("div.navbar-collapse").removeClass("collapse"), 1170 > s ? (e.addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(
+              ".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $(".logo span").hide()) : (e.removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(
+              ".logo span").show()), l -= i, 1 > l && (l = 1), l > i && $("#page-wrapper").css("min-height", l + "px")
+          },
+          s = window.location,
+          l = $("ul.nav a").filter(function() {
+            return this.href === s || 0 === s.href.indexOf(this.href)
+          }).addClass("active").parent().parent().addClass("in").parent();
+        l.is("li") && l.addClass("active"), $(window).ready(i), $(window).on("resize", i)
+      })
+      /*, $(".open-close").on("click", function() {
+              $("body").hasClass("content-wrapper") ? ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"), $("body").removeClass("content-wrapper"), $(".open-close i").addClass("icon-arrow-left-circle"), $(".logo span").show()) : ($("body").trigger("resize"), $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"), $("body").addClass("content-wrapper"), $(".open-close i").removeClass("icon-arrow-left-circle"), $(".logo span").hide())
+            })*/
+      ,
+      function(e, i, s) {
+        var l = '[data-perform="panel-collapse"]',
+          o = '[data-perform="panel-dismiss"]';
+        e(l).each(function() {
+          var i = {
+              toggle: !1
+            },
+            s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper"),
+            o = e(this).children("i");
+          l.length || (l = s.children(".panel-heading").nextAll().wrapAll("<div/>").parent().addClass("panel-wrapper"), i = {}), l.collapse(i).on("hide.bs.collapse", function() {
+            o.removeClass("ti-minus").addClass("ti-plus")
+          }).on("show.bs.collapse", function() {
+            o.removeClass("ti-plus").addClass("ti-minus")
+          })
+        }), e(s).on("click", l, function(i) {
+          i.preventDefault();
+          var s = e(this).closest(".panel"),
+            l = s.find(".panel-wrapper");
+          l.collapse("toggle")
+        }), e(s).on("click", o, function(i) {
+          function l() {
+            var i = s.parent();
+            s.remove(), i.filter(function() {
+              return e(this).is('[class*="col-"]') && 0 === e(this).children("*").length
+            }).remove()
+          }
+          i.preventDefault();
+          var s = e(this).closest(".panel");
+          l()
+        })
+      }(jQuery, window, document), $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+      }), $(function() {
+        $('[data-toggle="popover"]').popover()
+      }), $(".list-task li label").on("click", function() {
+        $(this).toggleClass("task-done")
+      }), $(".settings_box a").on("click", function() {
+        $("ul.theme_color").toggleClass("theme_block")
+      }), $(".collapseble").on("click", function() {
+        $(".collapseblebox").fadeToggle(350)
+      }), $(".slimscrollright").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".slimscrollsidebar").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), $(".chat-list").slimScroll({
+        height: "100%",
+        position: "right",
+        size: "5px",
+        color: "#dcdcdc"
+      }), e.trigger("resize"), $(".visited li a").on("click", function(e) {
+        $(".visited li").removeClass("active");
+        var i = $(this).parent();
+        i.hasClass("active") || i.addClass("active"), e.preventDefault()
+      }), $("#to-recover").on("click", function() {
+        $("#loginform").slideUp(), $("#recoverform").fadeIn()
+      }), $(".navbar-toggle").on("click", function() {
+        $(".navbar-toggle i").toggleClass("ti-menu").addClass("ti-close")
+      })
+  });
+</script>
+-->
+<script>
+  $(document).ready(function(){
+      setTimeout(function(){
+        $('html, body').
+        animate({
+          scrollTop: 100}, 1000,function(){
+
+          });
+        }, 5000);
+
+        setTimeout(function(){
+          ($("body").trigger("resize"),
+          $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
+          $("body").addClass("content-wrapper"),
+          $(".open-close i").removeClass("icon-arrow-left-circle"), $(".logo span").hide())
+        }, 300);
+
+  });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99590339-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-99590339-2');
+</script>

@@ -1,0 +1,694 @@
+<style>
+
+  .div1 {
+    width: 100%;
+    height: 72px;
+    border: 1px solid transparent;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #panelScroller{
+    max-height:535%;
+    overflow-y: auto;
+  }
+
+  #scrollable-dropdown-menu .dropdown-menu {
+    max-height: 235px;
+    overflow-y: auto;
+  }
+
+  .glyphicon-list-alt {
+    border-radius: 900px;
+    color: white;
+    font-size: 12px;
+  }
+
+  .glyphicon-flash {
+    border-radius: 900px;
+    color: white;
+    font-size: 12px;
+  }
+
+  .glyphicon-trash {
+    border-radius: 900px;
+    color: white;
+    font-size: 12px;
+  }
+
+  .glyphicon-repeat {
+    border-radius: 900px;
+    color: white;
+    font-size: 12px;
+  }
+
+  .glyphicon-border {
+    border: transparent;
+    padding: 7px;
+    background: #28b2f1;
+    cursor: pointer;
+  }
+
+  .topBox {
+    background: #28b2f1;
+    color: white;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    width: 25px;
+    height: 26px;
+    padding: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 0px;
+  }
+
+  .box {
+    background: #28b2f1;
+    color: white;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 30px;
+  }
+
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+  }
+
+  .animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite
+  }
+
+  .animated.hinge {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s
+  }
+
+  @-webkit-keyframes zoomIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3)
+    }
+    50% {
+      opacity: 1
+    }
+  }
+
+  @keyframes zoomIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3)
+    }
+    50% {
+      opacity: 1
+    }
+  }
+
+  .zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn
+  }
+
+  @-webkit-keyframes zoomOut {
+    0% {
+      opacity: 1
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3)
+    }
+    100% {
+      opacity: 0
+    }
+  }
+
+  @keyframes zoomOut {
+    0% {
+      opacity: 1
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3)
+    }
+    100% {
+      opacity: 0
+    }
+  }
+
+  .zoomOut {
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut
+  }
+
+  #accordion .panel-title i.glyphicon {
+    -moz-transition: -moz-transform 0.5s ease-in-out;
+    -o-transition: -o-transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .rotate-icon {
+    -webkit-transform: rotate(-225deg);
+    -moz-transform: rotate(-225deg);
+    transform: rotate(-225deg);
+  }
+
+  .panel {
+    border: 0px;
+    border-bottom: 1px solid #30bb64;
+  }
+
+  .panel-group .panel+.panel {
+    margin-top: 0px;
+
+  }
+
+  .panel-group .panel {
+    border-radius: 0px;
+
+  }
+
+  .panel-heading {
+    border-radius: 0px;
+    color: white;
+    padding: 25px 15px;
+  }
+
+  .panel-custom>.panel-heading {
+    background-color: #dbdeec;
+  }
+
+  .panel-group .panel:last-child {
+    border-bottom: 5px solid #2ba659;
+
+  }
+
+  panel-collapse .collapse.in {
+    border-bottom: 0;
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes animatedRight {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animatedRight {
+    /* This section calls the slideInFromLeft animation we defined above */
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+  }
+</style>
+
+<script type="text/javascript">
+$('#unbilled_task').click(function(){
+  console.log('rere');
+  $('#icons').attr('disabled', 'disabled');
+});
+
+
+  $(function() {
+
+    function toggleChevron(e) {
+      $(e.target)
+        .prev('.panel-heading')
+        .find("i")
+        .toggleClass('rotate-icon');
+      $('.panel-body.animated').toggleClass('zoomIn zoomOut');
+    }
+
+    $('#accordion').on('hide.bs.collapse', toggleChevron);
+    $('#accordion').on('show.bs.collapse', toggleChevron);
+  });
+
+  function phoneno() {
+    $('#phone').keypress(function(e) {
+      var a = [];
+      var k = e.which;
+
+      for (i = 48; i < 58; i++)
+        a.push(i);
+
+      if (!(a.indexOf(k) >= 0))
+        e.preventDefault();
+    });
+  }
+</script>
+
+<div class="container-fluid">
+
+
+  <div class="white-box" style="border-radius: 12px;height: -webkit-fill-available">
+    <div class="div1" style="background:#ddd;border-radius: 12px;">
+      <br />
+
+      <div class="col-sm-3" style="width : 145px;">
+        <h5><label style="color:red"> * </label><label>Select your project:</label></h5>
+      </div>
+
+      <div class="col-sm-3" style="padding:4px" id="scrollable-dropdown-menu">
+        <input type="text" class="form-control" ng-model="projectModel" ng-style="projectStyle" style="width : 300px;cursor: pointer;" uib-typeahead="projectDetails as projectDetails.project_name for projectDetails in projectList | filter:$viewValue" placeholder="Enter project name"
+          autofocus/>
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-1" style="width : 55px">
+        <h5><label>Date:</label></h5>
+      </div>
+
+      <div class="col-sm-2" style="padding:4px">
+        <input type="text" class="form-control" style="cursor: pointer;" uib-datepicker-popup="dd MMM yyyy" show-button-bar="false" ng-model="dateModel" ng-click="onload = !!! onload" is-open="onload" placeholder="Date" datepicker-options="date_options" readonly="true" />
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-1" style="width : 22px;padding:4px">
+        <div class="topBox" title="Recurring">
+          <span ng-model="topRecurringModel">R</span>
+        </div>
+      </div>
+
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-1" style="width : 55px;padding:1px">
+        <i class="glyphicon glyphicon-plus-sign" style="background:#28b2f1;color:white;cursor: pointer;font-size:30px" title="Add Task" ng-click="addTask()"></i>
+      </div>
+
+      <br /><br /><br />
+
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+        <div class="panel panel-custom" style="border-bottom: none;margin-bottom: 2px;{{showUnbilledTaskPanel}}" >
+          <div class="panel-heading" role="tab" id="unbilled_task" style="padding: 2px 5px;border-radius: 10px 10px 10px 10px;height: 25px;text-transform: none;" >
+            <h4 class="panel-title" style="margin-top: 0px;">
+              <a data-toggle="collapse" style="content: '';" data-parent="#accordion" href="" ui-sref="timeTrackerNew({'#': 'collapse_unbilled_task'})" aria-expanded="true" aria-controls="collapse_unbilled_task">
+                <i class="glyphicon glyphicon-plus" ></i>
+                  Unbilled Task ({{unbilledTaskList.length}})
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_unbilled_task" class="panel-collapse collapse" role="tabpanel" aria-labelledby="unbilled_task">
+            <div class="panel-body animated zoomOut">
+              <div id="panelScroller">
+              <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-1">
+                <thead>
+                  <tr>
+                    <th>Project Number/Name</th>
+                    <th>Task Detail</th>
+                    <th>Date</th>
+                    <th>Quick Bill</th>
+                    <th>Remove Task</th>
+                    <th>Recurring</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="unbilledTaskDetails in unbilledTaskList">
+                    <td>{{unbilledTaskDetails.project_number}}/{{unbilledTaskDetails.project_name}}</td>
+                    <td>
+                      <a class="glyphicon glyphicon-list-alt glyphicon-border" title="Task Info" data-toggle="modal" data-target="#unbilled_task_modal" ng-click="unbilledTaskModalFunction($index,unbilledTaskDetails)" style="cursor: pointer">
+                      </a>
+                    </td>
+                    <td style="width:115px">
+                      <div class="form-group">
+                        <input type="text" class="form-control" style="cursor: pointer;" uib-datepicker-popup="dd MMM yyyy" show-button-bar="false" ng-model="unbilledTaskDetails.unbilledTaskDateModel" ng-click="unbilled = !!! unbilled" is-open="unbilled" datepicker-options="unbilled_date_options" readonly="true" />
+                      </div>
+                    </td>
+                    <td>
+                      <div id="icons" disabled="disabled">
+                        <span  class="glyphicon glyphicon-flash glyphicon-border" title="Quick Bill" ng-click="unbilledTaskQuickBill($index,unbilledTaskDetails)"  data-toggle="modal" data-target="#unbilled_task_modal_quick_bill" style="cursor: pointer" ></span>
+                      </div>
+
+                    </td>
+                    <td>
+                      <span class="glyphicon glyphicon-trash glyphicon-border" title="Delete" ng-click="unbilledTaskDelete($index,unbilledTaskDetails)"></span>
+                    </td>
+                    <td>
+                      <div class="box">
+                        <span class="alphabet" title="Recurring">R</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="modal fade" id="unbilled_task_modal" role="dialog" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #8c9bcf;color: black;">
+                  <button type="button" data-dismiss="modal" ng-click="refreshUnbilledTask()" class="close">&times;</button>
+                  <h4 class="modal-title"><b>{{project_number}}/{{project_name}}</b></h4>
+                </div>
+
+                <div class="white-box" style="padding:15px;height: fit-content">
+                  <div class="modal-body" ng-repeat="specificTaskDetails in specificTaskList">
+                    <div class="row">
+                        <div class="col-sm-3" style="border:1px solid black;height:250;">
+                          <center>
+                            <h5><b>Delivery</b></h5>
+                          </center>
+                          <center>
+                            <input type="text" class="form-control" ng-model="specificTaskDetails.unbilledDeliveryModel" style="height: 25px;border-radius: 10px;padding: 1px 10px" uib-typeahead="deliveryDetails as deliveryDetails.deliverable_name for deliveryDetails in deliveryList | filter:$viewValue" placeholder="Enter delivery name" typeahead-on-select="deliveryChange(specificTaskDetails.unbilledDeliveryModel)"
+                            autofocus/>
+                          </center>
+                        </div>
+
+                        <div class="col-sm-9" style="border:1px solid black;height:250;overflow-y:scroll;">
+                          <center>
+                            <h5><b>Tasks</b></h5>
+                          </center>
+                          <center>
+                          <uib-tabset type="pills" active="specificTaskDetails.activeTab">
+
+                              <uib-tab  heading="{{serviceDetails.service_name}}" ng-repeat="serviceDetails in serviceList" ng-model="specificTaskDetails.unbilledServiceTabModel" ng-click="serviceTabChange(serviceDetails)" class="btn-info" disable="tab.disabled">
+
+                              <button class="btn" style="outline:none;padding: 1px 7px;vertical-align: top;height: 25px;border-radius: 10px 10px 10px 10px;margin: 1px;" ng-repeat="taskNameDetails in taskNameList" ng-style="taskNameDetails.taskNameStyle" ng-model="specificTaskDetails.unbilledTaskModel" ng-click="saveTaskName($index,taskNameDetails);">{{taskNameDetails.task_name}}
+                              </button>
+                              </uib-tab>
+                            </uib-tabset>
+                            </center>
+                        </div>
+                    </div>
+                    <br />
+
+                    <center><h5><b>Other Details</b></h5></center>
+                    <br />
+                    <div class="col-sm-3" style="margin-left: 70px;">
+                      <input type="checkbox"  ng-true-value="'Y'" ng-false-value="'N'" ng-model="specificTaskDetails.unbilled_task_weekend_hours_model" />&nbsp;&nbsp;<label><h5><b>Weekend Hours</b></h5></label>
+                    </div>
+
+                    <div class="col-sm-2" style="margin-left: 130px;width:120px">
+                      <input type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="specificTaskDetails.unbilled_task_peer_rework_model" ng-click="unbilled_task_peer_rework_change()"/>&nbsp;&nbsp;<label><h5><b>Peer Rework</b></h5></label>
+                    </div>
+
+                    <div class="col-sm-3" style="padding: 3px;" id="scrollable-dropdown-menu">
+                      <input type="text" class="form-control" ng-model="specificTaskDetails.unbilledEmployeeModel" style="width : 300px;cursor: pointer;" uib-typeahead="employeeDetails as employeeDetails.employee_name_no for employeeDetails in employeeList | filter:$viewValue" placeholder="Enter employee name" ng-disabled="specificTaskDetails.employeeNameDisabled" typeahead-on-select="employeeChange(specificTaskDetails.unbilledEmployeeModel)"/>
+                    </div>
+
+                    <br /><br /><br />
+
+
+                    <div class="col-sm-3" style="margin-left: 70px;width:130px">
+                      <label><h5><b>Executed Quantity</b></h5></label>
+                    </div>
+
+                    <div class="col-sm-2" style="padding:3px">
+                      <input class="form-control" type="text" id="phone" onkeypress="phoneno()" maxlength="4" placeholder="0" style="width:60px;border-radius:10px" ng-model="specificTaskDetails.unbilledExeQuantityModel"/>
+                    </div>
+
+                    <div class="col-sm-3" style="margin-left: 70px;width:183px">
+                      <label><h5><b>Estimated Hours (HH:MM)</b></h5></label>
+                    </div>
+
+                    <div class="col-sm-1" style="padding:3px;width:53px">
+                        <input type="text"  class="form-control" id="phone" onkeypress="phoneno()" maxlength="2" placeholder="0" style="width:45px;border-radius:10px" ng-model="specificTaskDetails.unbilledEstHrsModel"/>
+                    </div>
+
+                    <div class="col-sm-1" style="padding:4px;width:15px"><b>:</b></div>
+
+                    <div class="col-sm-1" style="padding:3px;">
+                      <input  type="text"  class="form-control" id="phone" onkeypress="phoneno()" maxlength="2" placeholder="0" style="width:45px;border-radius:10px" ng-model="specificTaskDetails.unbilledEstMinModel"/>
+                    </div>
+
+
+                    <br /><br /><br />
+
+                    <div class="col-sm-3" style="margin-left:70px;width:80px">
+                      <label><h5><b>Comments</b></h5></label>
+                    </div>
+                    <div class="col-sm-9">
+                      <textarea class="form-control" style="height: 75px;width:100%;border-radius:10px;" ng-model="specificTaskDetails.unbilledCommentsModel" rows="2"></textarea>
+                    </div>
+
+                    <br /><br /><br /><br /><br /><br />
+                    <center>
+                      <button type="button" style="border-radius:4px;background:#28b2f1;color:white;border:#28b2f1;width: 63px;height: 31px;" class="btn btn-success" ng-click="unbilledTaskModalSave(specificTaskDetails)">Save</button>
+                    </center>
+
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="unbilled_task_modal_quick_bill" role="dialog" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                <div class="modal-header" style="background-color: #8c9bcf;color: black;">
+                  <button type="button" data-dismiss="modal" ng-click="refreshUnbilledTask()" class="close">&times;</button>
+                  <h4 class="modal-title"><b>Quick Bill</b></h4>
+                </div>
+
+                <div class="white-box" style="padding:15px;height: fit-content">
+                  <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Project No / Name :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{project_number}}/{{project_name}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Deliverable Name :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{q_deliverable_name}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Task Name :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{task_name}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Date :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{date | date:'dd-MMM-yyyy'}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Time Spent :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b></b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Executed Quantity :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{q_exe_quantity}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Weekend Hours :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{weekend_hrs}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Peer Rework :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{peer_rework}}</b></h5></label>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="col-sm-2" style="width:140px">
+                          <label><h5><b>Comments :</b></h5></label>
+                        </div>
+                        <div class="col-sm-8">
+                          <label><h5><b>{{comment}}</b></h5></label>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        <br />
+        <div class="panel panel-custom" style="border-bottom: none;margin-bottom: 2px;{{showTodayTaskPanel}};">
+          <div class="panel-heading" role="tab" id="today_task" style="padding: 2px 5px;border-radius: 10px 10px 10px 10px;height: 25px;text-transform: none;">
+            <h4 class="panel-title" style="margin-top: 0px;">
+              <a class="collapsed" data-toggle="collapse" style="content: '';" data-parent="#accordion" href="" ui-sref="timeTrackerNew({'#': 'collapse_today_task'})" aria-expanded="false" aria-controls="collapse_today_task">
+                  <i class="glyphicon glyphicon-plus"></i>
+                  Today's Task ({{todayTaskList.length}})
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_today_task" class="panel-collapse collapse" role="tabpanel" aria-labelledby="today_task">
+            <div class="panel-body animated zoomOut">
+              <div id="panelScroller">
+              <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-2">
+                <thead>
+                  <tr>
+                    <th>Play/Pause</th>
+                    <th>Project Number/Name</th>
+                    <th>Timer</th>
+                    <th>Task Detail</th>
+                    <th>Date</th>
+                    <th>Quick Bill</th>
+                    <th>Reset</th>
+                    <th>Remove Task</th>
+                    <th>Recurring</th>
+                  </tr>
+
+                </thead>
+
+
+                <tbody ng-repeat="todayTaskDetails in todayTaskList">
+
+                  <tr  ng-controller="timerController">
+
+                    <td>
+                      <div>
+                        <button class="btn btn-info" ng-click="startTimer()" type="button" ng-hide="todayTaskDetails.startTimerHide">Play</button>
+                        <button class="btn btn-info" ng-click="stopTimer()" type="button" ng-show="todayTaskDetails.stopTimerShow">Pause</button>
+                      </div>
+                    </td>
+                    <td>{{todayTaskDetails.project_number}}/{{todayTaskDetails.project_name}}</td>
+                    <td>
+                      <div ng-model="todayTaskDetails.clockModel">
+                        <h3>{{todayTaskDetails.clock}}</h3>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="	glyphicon glyphicon-list-alt glyphicon-border"></span>
+                    </td>
+                    <td style="width:115px">
+                      <div class="form-group">
+                        <input type="text" class="form-control" style="cursor: pointer;" uib-datepicker-popup="dd MMM yyyy" show-button-bar="false" ng-model="todayTaskDetails.todayTaskDateModel" ng-click="today = !!! today" is-open="today" datepicker-options="today_date_options"
+                        readonly="true" />
+                      </div>
+                    </td>
+                    <td>
+                      <span class="glyphicon glyphicon-flash glyphicon-border" title="Quick Bill"></span>
+                    </td>
+                    <td>
+                      <span class="glyphicon glyphicon-repeat glyphicon-border" title="Reset" ng-click="resetTimer()"></span>
+                    </td>
+                    <td>
+                      <span class="glyphicon glyphicon-trash glyphicon-border" title="Delete"></span>
+                    </td>
+                    <td>
+                      <div class="box">
+                        <span class="alphabet" title="Recurring">R</span>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="panel panel-custom" style="border-bottom: none;margin-bottom: 2px;{{showFutureTaskPanel}}">
+          <div class="panel-heading" role="tab" id="future_task" style="padding: 2px 5px;border-radius: 10px 10px 10px 10px;height: 25px;text-transform: none;">
+            <h4 class="panel-title" style="margin-top: 0px;">
+                      <a class="collapsed" data-toggle="collapse" style="content: '';" data-parent="#accordion" href="" ui-sref="timeTrackerNew({'#': 'collapse_future_task'})" aria-expanded="false" aria-controls="collapse_future_task">
+                        <i class="glyphicon glyphicon-plus"></i>
+                          Future Task ({{futureTaskList.length}})
+                      </a>
+                    </h4>
+          </div>
+          <div id="collapse_future_task" class="panel-collapse collapse" role="tabpanel" aria-labelledby="future_task">
+            <div class="panel-body animated zoomOut">
+              <div id="panelScroller">
+              <table class="table color-bordered-table info-bordered-table table-responsive unbilled-tbl-3">
+                <thead>
+                  <tr>
+                    <th>Project Number/Name</th>
+                    <th>Task Detail</th>
+                    <th>Date</th>
+                    <th>Remove Task</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="futureTaskDetails in futureTaskList">
+                  <td>{{futureTaskDetails.project_number}}/{{futureTaskDetails.project_name}}</td>
+                  <td>
+                    <span class="	glyphicon glyphicon-list-alt glyphicon-border"></span>
+                  </td>
+                  <td style="width:115px">
+                    <div class="form-group">
+                      <input type="text" class="form-control" style="cursor: pointer;" uib-datepicker-popup="dd MMM yyyy" show-button-bar="false" ng-model="futureTaskDetails.futureTaskDateModel" ng-click="future = !!! future" is-open="future" datepicker-options="future_date_options"
+                      readonly="true" />
+                    </div>
+                  </td>
+                  <td>
+                    <span class="glyphicon glyphicon-trash glyphicon-border" title="Delete"></span>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

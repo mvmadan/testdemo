@@ -1,0 +1,68 @@
+<div id="page-wrapper">
+  <style>
+    .div1 {
+      width: 365;
+      height: 220;
+      border: 1px solid black;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-right: 100px;
+      margin-left: 320px;
+    }
+  </style>
+
+  <div class="container-fluid">
+    <center>
+      <h3 class="page-title">Node.JS Email application</h3></center>
+    <div class="div1">
+      <br>
+
+      <div class="col-md-1" style="width : 60px">
+        <h5><label>To:</label></h5>
+      </div>
+      <div class="col-md-10">
+        <input type="text" id="to" class="form-control" style="width:250" placeholder="Enter email id where you want to send" /><br><br>
+      </div>
+
+      <div class="col-md-1" style="width : 60px">
+        <h5><label>Subject:</label></h5>
+      </div>
+      <div class="col-md-9">
+        <input type="text" id="subject" class="form-control" style="width:250" placeholder="Write subject" /><br><br>
+      </div>
+
+<div ng-show="showTable">
+      <table id="myTable" class="table color-bordered-table info-bordered-table table-responsive">
+        <thead>
+          <tr>
+            <th>Project Number/Name</th>
+            <th>PIC</th>
+            <th>Service(s)</th>
+            <th>Client</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="mailTableDetails in mailTableList">
+            <td>{{mailTableDetails.project_id}}</td>
+            <td>{{mailTableDetails.PIC}}</td>
+            <td>{{mailTableDetails.Service}}</td>
+            <td>{{mailTableDetails.Client}}</td>
+            <td>{{mailTableDetails.Description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+      <div style="text-align:center">
+        <button style="text-align:center" id="send_email" class="btn btn-info">Send</button>
+      </div>
+
+      <div style="text-align: center">
+        <span style="color:red" id="message_span"></span>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <style>
+      .div1 {
+        width: 365;
+        height: 250;
+        border: 1px solid transparent;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 100px;
+        margin-left: 310px;
+      }
+
+      #myTable {
+        display: inline-block !important;
+        overflow-y: overlay !important;
+      }
+    </style>
+
+    <div class="white-box" style="padding: 18px;border-radius: 12px">
+      <div class="div1" style="background:#ddd;border-radius: 12px">
+        <br>
+        <form name="myForm">
+          <div class="col-md-1" style="width : 60px">
+            <h5><label>To:</label></h5>
+          </div>
+          <div class="col-md-10">
+            <input type="text" id="to" class="form-control" style="width:400" ng-model="toModel" placeholder="Enter email id" /><br><br>
+          </div>
+
+          <div class="col-md-1" style="width : 60px">
+            <h5><label>Subject:</label></h5>
+          </div>
+          <div class="col-md-10">
+            <input type="text" id="subject" class="form-control" style="width:400" ng-model="subjectModel" placeholder="Enter subject" /><br><br>
+          </div>
+
+          <!-- <input type="file" ngf-select ng-model="excelfile" name="file" ngf-max-size="20MB"> -->
+
+          <div style="text-align:center">
+            <button style="border-radius:6px;background-color: #1b9dec;border-color: #0e527d;" type="button" class="btn btn-success" ng-click="send()">Send</button>
+          </div>
+
+          <br>
+
+          <center>
+            <span id="message_span" style="color:red"></span>
+          </center>
+
+      </div>
+    </div>
+
+    <br>
+
+    <!-- <div class="white-box" style="border-radius: 12px">
+      <table id="myTable" class="table color-bordered-table info-bordered-table table-responsive table-hover" style="border-radius: 12px">
+        <thead>
+          <tr>
+            <th ng-repeat="(key , value) in mailBTSList[0]">
+              {{key}}
+            </th>
+            <th>MRTech Client Estimate</th>
+            <th>MRTech Actual Hours</th>
+            <th>MRTech Hours Logged On Change Request</th>
+            <th>MRTech % execution (on final estimate</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="mailBTSDetails in mailBTSList">
+            <td>{{mailBTSDetails.Client}}</td>
+            <td>{{mailBTSDetails['Client Code']}}</td>
+            <td>{{mailBTSDetails.Type}}</td>
+            <td>{{mailBTSDetails.Business_Type}}</td>
+            <td>{{mailBTSDetails.created_on}}</td>
+            <td>{{mailBTSDetails.project_id}}</td>
+
+            <td>{{mailBTSDetails.Project_Number}}</td>
+            <td>{{mailBTSDetails['Project Name']}}</td>
+            <td>{{mailBTSDetails['Project Status']}}</td>
+            <td>{{mailBTSDetails.PIC}}</td>
+            <td>{{mailBTSDetails['Client Team']}}</td>
+            <td>{{mailBTSDetails.Region}}</td>
+
+            <td>{{mailBTSDetails.Overall_Client_Estimate}}</td>
+            <td>{{mailBTSDetails.Overall_Actual_Hours}}</td>
+            <td>{{mailBTSDetails.Overall_Hours_Logged_On_Change_Request}}</td>
+            <td>{{mailBTSDetails['Overall % execution (on final estimate)']}}</td>
+
+            <td>{{mailBTSDetails['GPM Client Estimate']}}</td>
+            <td>{{mailBTSDetails['GPM Actual Hours']}}</td>
+            <td>{{mailBTSDetails['GPM Hours Logged On Change Request']}}</td>
+            <td>{{mailBTSDetails['GPM % execution (on final estimate)']}}</td>
+
+
+            <td>{{mailBTSDetails['SP Client Estimate']}}</td>
+            <td>{{mailBTSDetails['SP Actual Hours']}}</td>
+            <td>{{mailBTSDetails['SP Hours Logged On Change Request']}}</td>
+            <td>{{mailBTSDetails['SP % execution (on final estimate)']}}</td>
+
+
+            <td>{{mailBTSDetails['DP Client Estimate']}}</td>
+            <td>{{mailBTSDetails['DP Actual Hours']}}</td>
+            <td>{{mailBTSDetails['DP Hours Logged On Change Request']}}</td>
+            <td>{{mailBTSDetails['DP % execution (on final estimate)']}}</td>
+
+
+            <td>{{mailBTSDetails['RW Client Estimate']}}</td>
+            <td>{{mailBTSDetails['RW Actual Hours']}}</td>
+            <td>{{mailBTSDetails['RW Hours Logged On Change Request']}}</td>
+            <td>{{mailBTSDetails['RW % execution (on final estimate)']}}</td>
+
+
+            <td>{{mailBTSDetails['OEC Client Estimate']}}</td>
+            <td>{{mailBTSDetails['OEC Actual Hours']}}</td>
+            <td>{{mailBTSDetails['OEC Hours Logged On Change Request']}}</td>
+            <td>{{mailBTSDetails['OEC % execution (on final estimate)']}}</td>
+
+            <td>{{mailBTSDetails['MRTech Client Estimate']}}</td>
+            <td>{{mailBTSDetails['MRTech Actual Hours']}}</td>
+            <td>{{mailBTSDetails['MRTech Hours Logged On Change Request']}}</td>
+            <td>{{mailBTSDetails['MRTech % execution (on final estimate)']}}</td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div> -->
+  </div>
+</div>

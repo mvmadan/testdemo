@@ -1,0 +1,130 @@
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <style>
+      .div1 {
+        width: 365;
+        height: 250;
+        border: 1px solid transparent;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 100px;
+        margin-left: 310px;
+      }
+    </style>
+
+    <div class="white-box" style="padding: 18px;">
+      <div class="div1" style="background:Honeydew;">
+        <br>
+
+        <div class="col-md-1" style="width : 60px">
+          <h5><label>To:</label></h5>
+        </div>
+        <div class="col-md-10">
+          <input type="text" id="to" class="form-control" style="width:400" ng-model="toModel" placeholder="Enter email id" /><br><br>
+        </div>
+
+        <div class="col-md-1" style="width : 60px">
+          <h5><label>Subject:</label></h5>
+        </div>
+        <div class="col-md-10">
+          <input type="text" id="subject" class="form-control" style="width:400" ng-model="subjectModel" placeholder="Enter subject" /><br><br>
+        </div>
+
+        <div style="text-align:center">
+          <button style="border-radius:6px;background-color: #1b9dec;border-color: #0e527d;" type="button" class="btn btn-success" ng-click="send()">Send</button>
+        </div>
+
+        <br>
+
+        <center>
+          <span id="message_span" style="color:red"></span>
+        </center>
+
+      </div>
+    </div>
+
+    <br>
+
+    <div class="white-box" style="background:Azure;">
+      <table id="myTableAdd" class="table color-bordered-table info-bordered-table table-responsive">
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Project No/Name</th>
+            <th>Services offered</th>
+            <th>Region</th>
+            <th>Project type</th>
+            <th>Client estimates</th>
+            <th>Internal estimates</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="mailDetailsAdd in mailListAdd">
+            <td style="width:60px">
+              <div ng-model="srModel">{{mailDetailsAdd.srNo}}</div>
+            </td>
+            <td>
+              <div ng-model="projectModel">{{mailDetailsAdd.ponumber_project_name}}</div>
+            </td>
+            <td>
+              <div ng-model="serviceModel">{{mailDetailsAdd.service_name}}</div>
+            </td>
+            <td>
+              <div ng-model="regionModel">{{mailDetailsAdd.region}}</div>
+            </td>
+            <td>
+              <div ng-model="typeModel">{{mailDetailsAdd.project_type}}</div>
+            </td>
+            <td>
+              <div ng-model="clientModel">{{mailDetailsAdd.total_client_estimate_hours}}</div>
+            </td>
+            <td>
+              <div ng-model="internalModel">{{mailDetailsAdd.total_internal_estimate_hours}}</div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+
+    <div class="white-box" style="background:Azure;">
+      <table id="myTableModify" class="table color-bordered-table info-bordered-table table-responsive">
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Project No/Name</th>
+            <th>Fiels</th>
+            <th>From</th>
+            <th>To</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="mailDetailsModify in mailListModify">
+            <td style="width:60px">
+              <div ng-model="sr_no_Model">{{mailDetailsModify.sr_no}}</div>
+            </td>
+            <td>
+              <div ng-model="project_no_Model">{{mailDetailsModify.ponumber_project_name}}</div>
+            </td>
+            <td>
+              <div ng-model="field_Model">{{mailDetailsModify.field}}</div>
+            </td>
+            <td>
+              <div ng-model="from_Model">{{mailDetailsModify.from}}</div>
+            </td>
+            <td>
+              <div ng-model="to_Model">{{mailDetailsModify.to}}</div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
